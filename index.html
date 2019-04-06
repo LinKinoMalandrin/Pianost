@@ -7,48 +7,51 @@
 </head>
 <body>
 
+
 <div id="PIANO">
 	<div class="black">
 		<div class="container">
-			<div class="key C#"></div>
-			<div class="key D#"></div>
+			<div class="key C#">C#</div>
+			<div class="key D#">D#</div>
 		</div>
 		<div class="container">
-			<div class="key F#"></div>
-			<div class="key G#"></div>
-			<div class="key A#"></div>
+			<div class="key F#">F#</div>
+			<div class="key G#">G#</div>
+			<div class="key A#">A#</div>
 		</div>
 	</div>
 	<div class="white">
-		<div class="key C"></div>
-		<div class="key D"></div>
-		<div class="key E"></div>
-		<div class="key F"></div>
-		<div class="key G"></div>
-		<div class="key A"></div>
-		<div class="key B"></div>
+		<div class="key C">C</div>
+		<div class="key D">D</div>
+		<div class="key E">E</div>
+		<div class="key F">F</div>
+		<div class="key G">G</div>
+		<div class="key A">A</div>
+		<div class="key B">B</div>
 	</div>
 </div>
 
-
-<div id="CIRCLE">
-	<div class="note-1 selkey selected" id="sel-C" onclick="toggleKeys('C')">C</div>
-	<div class="note-2 selkey" id="sel-G" onclick="toggleKeys('G')">G</div>
-	<div class="note-3 selkey" id="sel-D" onclick="toggleKeys('D')">D</div>
-	<div class="note-4 selkey" id="sel-E" onclick="toggleKeys('E')">E</div>
-	<div class="note-5 selkey" id="sel-A" onclick="toggleKeys('A')">A</div>
-	<div class="note-6 selkey" id="sel-B" onclick="toggleKeys('B')">B</div>
-	<div class="note-7 selkey" id="sel-F#" onclick="toggleKeys('F#')">F#</div>
-	<div class="note-8 selkey" id="sel-C#" onclick="toggleKeys('C#')">C#</div>
-	<div class="note-9 selkey" id="sel-G#" onclick="toggleKeys('G#')">G#</div>
-	<div class="note-10 selkey" id="sel-D#" onclick="toggleKeys('D#')">D#</div>
-	<div class="note-11 selkey" id="sel-A#" onclick="toggleKeys('A#')">A#</div>
-	<div class="note-12 selkey" id="sel-F" onclick="toggleKeys('F')">F</div>
-	<div class="selection left" onclick="changeSelection()" id="SELECT">
-		<div class='ton'>Major</div>
-		<div class='ton'>Minor</div>
-		<div class="back"></div>
+<div class="container-row">
+	<div id="CIRCLE">
+		<div class="note-1 selkey selected" id="sel-C" onclick="toggleKeys('C')">C</div>
+		<div class="note-2 selkey" id="sel-G" onclick="toggleKeys('G')">G</div>
+		<div class="note-3 selkey" id="sel-D" onclick="toggleKeys('D')">D</div>
+		<div class="note-4 selkey" id="sel-E" onclick="toggleKeys('E')">E</div>
+		<div class="note-5 selkey" id="sel-A" onclick="toggleKeys('A')">A</div>
+		<div class="note-6 selkey" id="sel-B" onclick="toggleKeys('B')">B</div>
+		<div class="note-7 selkey" id="sel-F#" onclick="toggleKeys('F#')">F#</div>
+		<div class="note-8 selkey" id="sel-C#" onclick="toggleKeys('C#')">C#</div>
+		<div class="note-9 selkey" id="sel-G#" onclick="toggleKeys('G#')">G#</div>
+		<div class="note-10 selkey" id="sel-D#" onclick="toggleKeys('D#')">D#</div>
+		<div class="note-11 selkey" id="sel-A#" onclick="toggleKeys('A#')">A#</div>
+		<div class="note-12 selkey" id="sel-F" onclick="toggleKeys('F')">F</div>
+		<div class="selection left" onclick="changeSelection()" id="SELECT">
+			<div class='ton'>Major</div>
+			<div class='ton'>Minor</div>
+			<div class="back"></div>
+		</div>
 	</div>
+	<div id="CHORDS"></div>
 </div>
 
 </body>

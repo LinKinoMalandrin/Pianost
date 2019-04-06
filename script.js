@@ -17,11 +17,14 @@ function toggleKeys(key) {
 	else if (GAM === 'Minor')
 		toColor = getMinor(key);
 
-	for (let key of piano.getElementsByClassName('key'))
+	for (let key of piano.getElementsByClassName('key')) {
 		key.classList.remove('selected');
+		key.classList.remove('chord');
+	}
 	for (let key of toColor)
 		for (let note of piano.getElementsByClassName(key))
 			note.classList.add('selected');
+	printChords();
 }
 
 function getMajor(key) {
@@ -56,5 +59,59 @@ function changeSelection() {
 		select.classList.add('left');
 		GAM = 'Major';
 		toggleKeys(CURRENT);
+	}
+}
+
+function printChords() {
+	let chords = document.getElementById('CHORDS');
+	let index = KEYS.indexOf(CURRENT);
+
+	chords.innerHTML = "";
+	if (GAM == 'Minor') {
+		printChord(chords, CURRENT, 'm');
+		printChord(chords, KEYS[(index + 3) % 12], '');
+		printChord(chords, KEYS[(index + 5) % 12], 'm');
+		printChord(chords, KEYS[(index + 7) % 12], 'm');
+		printChord(chords, KEYS[(index + 8) % 12], '');
+		printChord(chords, KEYS[(index + 10) % 12], '');
+		printChord(chords, KEYS[(index + 2) % 12], 'dim');
+	} else if (GAM == 'Major') {
+		printChord(chords, CURRENT, '');
+		printChord(chords, KEYS[(index + 2) % 12], 'm');
+		printChord(chords, KEYS[(index + 4) % 12], 'm');
+		printChord(chords, KEYS[(index + 5) % 12], '');
+		printChord(chords, KEYS[(index + 7) % 12], '');
+		printChord(chords, KEYS[(index + 9) % 12], 'm');
+		printChord(chords, KEYS[(index + 11) % 12], 'dim');
+	}
+}
+
+function printChord(chords, chord, more) {
+	chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\')\">"+chord+more+"</div>\n";
+}
+
+function showChord(chord, more) {
+
+	let chordsKeys = [chord];
+
+	if (more == '') {
+		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 4) % 12]);
+		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 7) % 12]);
+	} else if (more == 'm') {
+		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 3) % 12]);
+		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 7) % 12]);
+	} else if (more == '5') {
+		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 7) % 12]);
+	} else if (more == 'dim') {
+		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 3) % 12]);
+		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 6) % 12]);
+	}
+
+	let keys = document.getElementsByClassName('key');
+	for (let key of keys) {
+		key.classList.remove('chord');
+		for (let note of chordsKeys)
+			if (key.classList.contains(note))
+				key.classList.add('chord');
 	}
 }
