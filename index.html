@@ -10,13 +10,13 @@
 <div id="PIANO">
 	<div class="black">
 		<div class="container">
-			<div class="key Cd"></div>
-			<div class="key Dd"></div>
+			<div class="key C#"></div>
+			<div class="key D#"></div>
 		</div>
 		<div class="container">
-			<div class="key Fd"></div>
-			<div class="key Gd"></div>
-			<div class="key Ad"></div>
+			<div class="key F#"></div>
+			<div class="key G#"></div>
+			<div class="key A#"></div>
 		</div>
 	</div>
 	<div class="white">
@@ -32,18 +32,18 @@
 
 
 <div id="CIRCLE">
-	<div class="note-1" onclick="toggleKeys('C')">C</div>
-	<div class="note-2" onclick="toggleKeys('G')">G</div>
-	<div class="note-3" onclick="toggleKeys('D')">D</div>
-	<div class="note-4" onclick="toggleKeys('E')">E</div>
-	<div class="note-5" onclick="toggleKeys('A')">A</div>
-	<div class="note-6" onclick="toggleKeys('B')">B</div>
-	<div class="note-7" onclick="toggleKeys('Fd')">F#</div>
-	<div class="note-8" onclick="toggleKeys('Cd')">C#</div>
-	<div class="note-9" onclick="toggleKeys('Gd')">G#</div>
-	<div class="note-10" onclick="toggleKeys('Dd')">D#</div>
-	<div class="note-11" onclick="toggleKeys('Ad')">A#</div>
-	<div class="note-12" onclick="toggleKeys('F')">F</div>
+	<div class="note-1 selkey selected" id="sel-C" onclick="toggleKeys('C')">C</div>
+	<div class="note-2 selkey" id="sel-G" onclick="toggleKeys('G')">G</div>
+	<div class="note-3 selkey" id="sel-D" onclick="toggleKeys('D')">D</div>
+	<div class="note-4 selkey" id="sel-E" onclick="toggleKeys('E')">E</div>
+	<div class="note-5 selkey" id="sel-A" onclick="toggleKeys('A')">A</div>
+	<div class="note-6 selkey" id="sel-B" onclick="toggleKeys('B')">B</div>
+	<div class="note-7 selkey" id="sel-F#" onclick="toggleKeys('F#')">F#</div>
+	<div class="note-8 selkey" id="sel-C#" onclick="toggleKeys('C#')">C#</div>
+	<div class="note-9 selkey" id="sel-G#" onclick="toggleKeys('G#')">G#</div>
+	<div class="note-10 selkey" id="sel-D#" onclick="toggleKeys('D#')">D#</div>
+	<div class="note-11 selkey" id="sel-A#" onclick="toggleKeys('A#')">A#</div>
+	<div class="note-12 selkey" id="sel-F" onclick="toggleKeys('F')">F</div>
 	<div class="selection left" onclick="changeSelection()" id="SELECT">
 		<div class='ton'>Major</div>
 		<div class='ton'>Minor</div>

@@ -1,9 +1,14 @@
-let KEYS = ['C', 'Cd', 'D', 'Dd', 'E', 'F', 'Fd', 'G', 'Gd', 'A', 'Ad', 'B'];
+let KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 let GAM = "Major";
 let CURRENT = 'C';
 
 
 function toggleKeys(key) {
+	if (key != CURRENT) {
+		document.getElementById("sel-"+CURRENT).classList.remove('selected');
+		document.getElementById("sel-"+key).classList.add('selected');
+		CURRENT = key;
+	}
 	let piano = document.getElementById('PIANO');
 
 	let toColor = [];

@@ -120,6 +120,7 @@
 }
 #CIRCLE .note-1.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-1.selected:hover {
@@ -143,6 +144,7 @@
 }
 #CIRCLE .note-2.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-2.selected:hover {
@@ -166,6 +168,7 @@
 }
 #CIRCLE .note-3.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-3.selected:hover {
@@ -189,6 +192,7 @@
 }
 #CIRCLE .note-4.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-4.selected:hover {
@@ -212,6 +216,7 @@
 }
 #CIRCLE .note-5.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-5.selected:hover {
@@ -235,6 +240,7 @@
 }
 #CIRCLE .note-6.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-6.selected:hover {
@@ -258,6 +264,7 @@
 }
 #CIRCLE .note-7.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-7.selected:hover {
@@ -281,6 +288,7 @@
 }
 #CIRCLE .note-8.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-8.selected:hover {
@@ -304,6 +312,7 @@
 }
 #CIRCLE .note-9.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-9.selected:hover {
@@ -327,6 +336,7 @@
 }
 #CIRCLE .note-10.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-10.selected:hover {
@@ -350,6 +360,7 @@
 }
 #CIRCLE .note-11.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-11.selected:hover {
@@ -373,6 +384,7 @@
 }
 #CIRCLE .note-12.selected {
   background-color: #007bff;
+  color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
 #CIRCLE .note-12.selected:hover {
