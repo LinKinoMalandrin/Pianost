@@ -1,11 +1,15 @@
+@font-face {
+  font-family: 'REGULAR';
+  src: url("Poppins-Regular.ttf");
+}
 * {
   box-sizing: border-box;
+  font-family: 'REGULAR';
 }
 #PIANO {
   transform: translateY(0);
   width: 350px;
   height: 200px;
-  border: 1px solid black;
 }
 #PIANO .black {
   width: 100%;
@@ -25,16 +29,353 @@
 #PIANO .black .container .key {
   background: black;
   width: 30px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 0 0 3px 3px;
+  z-index: 3;
+}
+#PIANO .black .container .key.selected {
+  background-color: #dc3545;
 }
 #PIANO .white {
   transform: translateY(-120px);
   width: 100%;
   display: flex;
+  justify-content: space-between;
   height: 100%;
 }
 #PIANO .white .key {
-  width: 50px;
+  border-radius: 0 0 3px 3px;
+  overflow-y: hidden;
+  z-index: 2;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  width: 46px;
+  background-color: white;
 }
-#PIANO .white .key:nth-child(n+2) {
-  border-left: 1px solid black;
+#PIANO .white .key.selected {
+  background-color: #dc3545;
+}
+#CIRCLE {
+  margin-top: 20px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  width: 260px;
+  height: 260px;
+  border-radius: 20px;
+}
+#CIRCLE #SELECT {
+  box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  border-radius: 3px;
+  border: 2px solid #007bff;
+  transform: translate(70px, 105px);
+  height: 50px;
+  width: 120px;
+  display: flex;
+  background-color: white;
+  align-items: center;
+}
+#CIRCLE #SELECT .ton {
+  display: flex;
+  justify-content: center;
+  z-index: 3;
+  width: 60px;
+  transition: 0.1s color;
+  will-change: color;
+}
+#CIRCLE #SELECT .back {
+  border-radius: 3px;
+  position: absolute;
+  background-color: #007bff;
+  height: 50px;
+  width: 60px;
+  z-index: 2;
+  transition: 0.1s transform;
+  will-change: transform;
+}
+#CIRCLE #SELECT.right .ton:nth-child(2) {
+  color: white;
+}
+#CIRCLE #SELECT.right .back {
+  transform: translateX(60px);
+}
+#CIRCLE #SELECT.left .ton:nth-child(1) {
+  color: white;
+}
+#CIRCLE #SELECT.left .back {
+  transform: translateX(0);
+}
+#CIRCLE .note-1 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(60px, 10px);
+}
+#CIRCLE .note-1:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-1.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-1.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-2 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(110px, 10px);
+}
+#CIRCLE .note-2:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-2.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-2.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-3 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(160px, 10px);
+}
+#CIRCLE .note-3:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-3.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-3.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-4 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(210px, 60px);
+}
+#CIRCLE .note-4:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-4.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-4.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-5 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(210px, 110px);
+}
+#CIRCLE .note-5:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-5.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-5.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-6 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(210px, 160px);
+}
+#CIRCLE .note-6:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-6.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-6.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-7 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(160px, 210px);
+}
+#CIRCLE .note-7:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-7.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-7.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-8 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(110px, 210px);
+}
+#CIRCLE .note-8:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-8.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-8.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-9 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(60px, 210px);
+}
+#CIRCLE .note-9:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-9.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-9.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-10 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(10px, 160px);
+}
+#CIRCLE .note-10:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-10.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-10.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-11 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(10px, 110px);
+}
+#CIRCLE .note-11:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-11.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-11.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CIRCLE .note-12 {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: black;
+  border-radius: 40px;
+  cursor: pointer;
+  transform: translate(10px, 60px);
+}
+#CIRCLE .note-12:hover {
+  background-color: lightgrey;
+}
+#CIRCLE .note-12.selected {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+#CIRCLE .note-12.selected:hover {
+  background-color: #007bff;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
 }

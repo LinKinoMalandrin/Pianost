@@ -1,8 +1,3 @@
-let KEYS = ['C', 'Cd', 'D', 'Dd', 'E', 'F', 'Fd', 'G', 'Gd', 'A', 'Ad', 'B'];
-let GAM = "Major";
-let CURRENT = 'C';
-
-
 function toggleKeys(key) {
 	let piano = document.getElementById('PIANO');
 
