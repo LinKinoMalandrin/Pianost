@@ -470,9 +470,6 @@
   border-radius: 40px;
   justify-content: space-between;
 }
-#CHORDS .chord .more {
-  font-size: 13px;
-}
 #CHORDS .chord:hover {
   background-color: #8c3acf;
   color: white;
@@ -547,6 +544,29 @@
 #CHORD .button span {
   margin-right: 3px;
 }
+#CHORD .select {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+#CHORD .select p {
+  display: block;
+}
+#CHORD .select .choice {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: 30px;
+  margin-left: 15px;
+}
+#CHORD .select .choice.selected {
+  background-color: #8c3acf;
+  color: white;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
 .button {
   display: inline-block;
   cursor: pointer;
@@ -557,6 +577,9 @@
 .logo-font {
   font-family: "LOGO";
   font-size: 30px;
+}
+span.more {
+  font-size: 13px;
 }
 @keyframes show {
   from {

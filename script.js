@@ -1,6 +1,8 @@
 let KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 let GAM = "Major";
 let CURRENT = 'C';
+let CURRENT_CHORD = [];
+let STARTING = 4;
 
 
 function toggleKeys(key) {
@@ -90,10 +92,10 @@ function printChord(chords, chord, more) {
 	let array = getNotes(chord, more);
 	let noteSplit = chord.split('');
 	if (noteSplit.length == 2)
-		chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\', 4)\"><p>"
+		chords.innerHTML += "<div class='chord' onclick=\"changeChord(\'"+chord+"\', \'"+more+"\', 4)\"><p>"
 	+noteSplit[0]+"<span class='diese'>"+noteSplit[1]+"</span><span class='more'>"+more+"</span></p>\n";
 	else
-		chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\', 4)\"><p>"
+		chords.innerHTML += "<div class='chord' onclick=\"changeChord(\'"+chord+"\', \'"+more+"\', 4)\"><p>"
 	+noteSplit[0]+"<span class='more'>"+more+"</span></p>\n";
 }
 
@@ -117,9 +119,29 @@ function getNotes(fondamental, plus) {
 	return array;
 }
 
-function showChord(chord, more, starting) {
+function changeChord(chord, more) {
+	let chordWithoutOrder = getChordArray(chord, more);
+	CURRENT_CHORD = chordWithoutOrder;
 
-	let chordsKeys = getChordArray(chord, more, starting);
+	let starting = STARTING;
+
+	let chordsKeys = findOrder(chordWithoutOrder, starting);
+
+	let chordEl = document.getElementById('CHORD');
+
+	for (let key of chordEl.getElementsByClassName('key')) {
+		key.classList.remove('chord');
+		for (let note of chordsKeys) {
+			if (key.classList.contains(note))
+				key.classList.add('chord');
+		}
+	}
+
+	document.getElementById('PLAY').onclick = function() { playChord(chordsKeys); };
+}
+
+function showChord() {
+	let chordsKeys = findOrder(CURRENT_CHORD, STARTING);
 
 	let chordEl = document.getElementById('CHORD');
 
@@ -159,27 +181,44 @@ function showPart(swtch, part, button) {
 	document.getElementById(part).classList.add('selected');
 }
 
-function getChordArray(fondamentale, more, starting) {
-	let array = [fondamentale+""+starting];
+function getChordArray(fondamentale, more) {
+	let array = [fondamentale];
 	let i = KEYS.indexOf(fondamentale);
 	if (more == '') {
-		if (i > 7) array.push(KEYS[(i + 4) % 12]+""+(starting+1));
-		else array.push(KEYS[(i + 4) % 12]+""+starting);
-		if (i > 4) array.push(KEYS[(i + 7) % 12]+""+(starting+1));
-		else array.push(KEYS[(i + 7) % 12]+""+starting);
+		array.push(KEYS[(i + 4) % 12]);
+		array.push(KEYS[(i + 7) % 12]);
 
 	} else if (more == 'm') {
-		if (i > 8) array.push(KEYS[(i + 3) % 12]+""+(starting+1));
-		else array.push(KEYS[(i + 3) % 12]+""+starting);
-		if (i > 4) array.push(KEYS[(i + 7) % 12]+""+(starting+1));
-		else array.push(KEYS[(i + 7) % 12]+""+starting);
+		array.push(KEYS[(i + 3) % 12]);
+		array.push(KEYS[(i + 7) % 12]);
 
 	} else if (more == 'dim') {
-		if (i > 8) array.push(KEYS[(i + 3) % 12]+""+(starting+1));
-		else array.push(KEYS[(i + 3) % 12]+""+starting);
-		if (i > 5) array.push(KEYS[(i + 6) % 12]+""+(starting+1));
-		else array.push(KEYS[(i + 6) % 12]+""+starting);
+		array.push(KEYS[(i + 3) % 12]);
+		array.push(KEYS[(i + 6) % 12]);
 
 	}
 	return array;
+}
+
+function findOrder(array, starting) {
+	let toReturn = [];
+	let index = 0;
+	let previousIndex = 0;
+	for (let i = 0; i < array.length; i++) {
+		index = KEYS.indexOf(array[i]);
+		if (index < previousIndex) {
+			starting++;
+		}
+		previousIndex = index;
+		toReturn.push(array[i]+""+starting);
+	}
+	return toReturn;
+}
+
+function switchStarting(option) {
+	STARTING = parseInt(option.getAttribute('value'));
+	for (let choice of document.getElementById('SELECTSTARTING').getElementsByClassName('choice'))
+		choice.classList.remove('selected');
+	option.classList.add('selected');
+	showChord();
 }
