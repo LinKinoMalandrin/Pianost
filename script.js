@@ -1,11 +1,10 @@
-
 let KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 let GAM = "Major";
 let CURRENT = 'C';
 let CURRENT_CHORD = [];
 let STARTING = 4;
-let INSTRUMENT = 'Synth';
-let SYNTH = new Tone.Synth().toMaster();
+let INSTRUMENT = 'Piano';
+let SYNTH = new Tone.PolySynth().toMaster();
 
 
 function toggleKeys(key) {
@@ -160,20 +159,24 @@ function showChord() {
 }
 
 function playKey(key) {
-	if (INSTRUMENT == 'Piano'){
+	if (INSTRUMENT == 'Piano') {
 		let audio = document.getElementById('audio-'+key);
 		audio.currentTime = 0;
 		audio.play();
-	} else if (INSTRUMENT == 'Synth') {
-		let synth = new Tone.Synth().toMaster()
-		synth.triggerAttackRelease(key, "8n");
+	} else {
+		SYNTH.triggerAttackRelease([key], "8n");
 	}
 }
 
 function playChord(array) {
-	for (let note of array) {
-		playKey(note);
+	if (INSTRUMENT == 'Piano') {
+		for (let note of array) {
+			playKey(note);
+		}
+	} else {
+		SYNTH.triggerAttackRelease(array, "8n");
 	}
+	
 }
 
 function showPart(swtch, part, button) {
@@ -231,7 +234,14 @@ function switchStarting(option) {
 	showChord();
 }
 
-function testSound() {
-	var synth = new Tone.Synth().toMaster();
-	synth.triggerAttackRelease("C4", "8n");
+function switchInstrument(button) {
+	if (button.classList.contains('left')) {
+		button.classList.remove('left');
+		button.classList.add('right');
+		INSTRUMENT = 'Synth';
+	} else if (button.classList.contains('right')) {
+		button.classList.remove('right');
+		button.classList.add('left');
+		INSTRUMENT = 'Piano';
+	}
 }
