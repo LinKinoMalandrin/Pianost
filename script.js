@@ -6,11 +6,12 @@ let STARTING = 4;
 let INSTRUMENT = 'Piano';
 let SYNTH = new Tone.PolySynth().toMaster();
 
-let scroll = document.getElementById("");
-scroll.addEventListener('click', function(e) {
+let scrollDiv = document.getElementById("VOLUMEDRAG");
+scrollDiv.addEventListener("click", function(e) {
 	let x = e.clientX;
 	let el = e.getBoundingClientRect();
 	let percentage = (x - el.left) / el.width;
+	scrollDiv.getElementsByClassName('level')[0].style.translateX = x;
 });
 
 function toggleKeys(key) {
