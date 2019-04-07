@@ -12,6 +12,7 @@
 }
 .container-row {
   display: flex;
+  align-items: start;
 }
 .diese {
   position: relative;
@@ -20,26 +21,34 @@
   padding-bottom: 10px;
 }
 #PIANO {
+  display: flex;
+}
+.piano {
+  margin-right: 5px;
   transform: translateY(0);
   width: 350px;
   height: 200px;
 }
-#PIANO .black {
+.piano .black {
   width: 100%;
   display: flex;
   height: 120px;
+  font-size: 13px;
 }
-#PIANO .black .container {
+.piano .black .diese {
+  font-size: 10px;
+}
+.piano .black .container {
   display: flex;
   justify-content: space-evenly;
 }
-#PIANO .black .container:nth-child(1) {
+.piano .black .container:nth-child(1) {
   width: 300px;
 }
-#PIANO .black .container:nth-child(2) {
+.piano .black .container:nth-child(2) {
   width: 400px;
 }
-#PIANO .black .container .key {
+.piano .black .container .key {
   cursor: pointer;
   background: black;
   width: 30px;
@@ -51,29 +60,29 @@
   justify-content: center;
   color: white;
 }
-#PIANO .black .container .key.selected {
+.piano .black .container .key.selected {
   background-color: #dc3545;
 }
-#PIANO .black .container .key.selected.chord {
+.piano .black .container .key.chord {
   background-color: #8c3acf;
 }
-#PIANO .black .container .key:active {
+.piano .black .container .key:active {
   background-color: grey;
 }
-#PIANO .black .container .key:active.selected {
+.piano .black .container .key:active.selected {
   background-color: #a8323d;
 }
-#PIANO .black .container .key:active.selected.chord {
+.piano .black .container .key:active.chord {
   background-color: #5c2887;
 }
-#PIANO .white {
+.piano .white {
   transform: translateY(-120px);
   width: 100%;
   display: flex;
   justify-content: space-between;
   height: 100%;
 }
-#PIANO .white .key {
+.piano .white .key {
   cursor: pointer;
   border-radius: 0 0 3px 3px;
   overflow-y: hidden;
@@ -85,20 +94,21 @@
   align-items: end;
   justify-content: center;
 }
-#PIANO .white .key.selected {
+.piano .white .key.selected {
   color: white;
   background-color: #dc3545;
 }
-#PIANO .white .key.selected.chord {
+.piano .white .key.chord {
+  color: white;
   background-color: #8c3acf;
 }
-#PIANO .white .key:active {
+.piano .white .key:active {
   background-color: lightgrey;
 }
-#PIANO .white .key:active.selected {
+.piano .white .key:active.selected {
   background-color: #a8323d;
 }
-#PIANO .white .key:active.selected.chord {
+.piano .white .key:active.chord {
   background-color: #5c2887;
 }
 #CIRCLE {
@@ -446,6 +456,9 @@
   padding: 15px;
   width: 200px;
 }
+#CHORDS .head {
+  margin-bottom: 10px;
+}
 #CHORDS .chord {
   padding-left: 15px;
   padding-right: 7px;
@@ -473,4 +486,83 @@
   color: white;
   font-size: 36px;
   color: #8c3acf;
+}
+.switch {
+  width: 100%;
+}
+.switch .head {
+  border-bottom: 1px solid grey;
+  display: flex;
+  padding-left: 30px;
+  padding-top: 20px;
+}
+.switch .head .link {
+  border-top: 1px solid grey;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  padding: 10px;
+  border-radius: 5px 5px 0 0;
+  cursor: pointer;
+  margin-right: 15px;
+}
+.switch .head .link.selected {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  transform: translateY(1px);
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+.switch .body {
+  overflow: hidden;
+}
+.switch .body .part {
+  animation: 0.2s show;
+  display: none;
+  padding: 30px;
+}
+.switch .body .part.selected {
+  display: block;
+}
+#CHORD {
+  padding: 15px;
+  margin-left: 20px;
+  margin-top: 20px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+}
+#CHORD .button {
+  color: #8c3acf;
+  border: 2px solid #8c3acf;
+  margin-top: 20px;
+}
+#CHORD .button:hover {
+  background-color: #8c3acf;
+  color: white;
+}
+#CHORD .button p {
+  margin: 0;
+  align-items: center;
+  display: flex;
+}
+#CHORD .button span {
+  margin-right: 3px;
+}
+.button {
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 5px;
+  padding: 0 9px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+.logo-font {
+  font-family: "LOGO";
+  font-size: 30px;
+}
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

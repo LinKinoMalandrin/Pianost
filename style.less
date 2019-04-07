@@ -18,6 +18,7 @@
 
 .container-row {
 	display:flex;
+	align-items:start;
 }
 
 .diese {
@@ -28,6 +29,11 @@
 }
 
 #PIANO {
+display:flex;
+}
+
+.piano {
+	margin-right:5px;
 	transform:translateY(0);
 	width:350px;
 	height:200px;
@@ -35,6 +41,8 @@
 		width:100%;
 		display:flex;
 		height:120px;
+		font-size:13px;
+		.diese { font-size:10px; }
 		.container {
 			&:nth-child(1) { width:300px; }
 			&:nth-child(2) { width:400px; }
@@ -51,20 +59,12 @@
 				align-items:flex-end;
 				justify-content:center;
 				color:white;
-				&.selected {
-					background-color:@red;
-					&.chord {
-						background-color:@purple;
-					}
-				}
+				&.selected { background-color:@red; }
+				&.chord { background-color:@purple; }
 				&:active{
 					background-color:grey;
-					&.selected {
-						background-color:@reddark;
-						&.chord {
-							background-color:@purpledark;
-						}
-					}
+					&.selected { background-color:@reddark; }
+					&.chord { background-color:@purpledark; }
 				}
 			}
 		}
@@ -89,18 +89,15 @@
 			&.selected {
 				color:white;
 				background-color:@red;
-				&.chord {
-					background-color:@purple;
-				}
+			}
+			&.chord {
+				color:white;
+				background-color:@purple; 
 			}
 			&:active{
 				background-color:lightgrey;
-				&.selected {
-					background-color:@reddark;
-					&.chord {
-						background-color:@purpledark;
-					}
-				}
+				&.selected { background-color:@reddark; }
+				&.chord { background-color:@purpledark; }
 			}
 		}
 	}
@@ -203,6 +200,9 @@
 	border-radius:20px;
 	padding:15px;
 	width:200px;
+	.head {
+		margin-bottom:10px;
+	}
 	.chord {
 		padding-left:15px;
 		padding-right:7px;
@@ -229,5 +229,80 @@
 			font-size:36px;
 			color:@purple;
 		}
+	}
+}
+
+.switch {
+	width:100%;
+	.head {
+		border-bottom:1px solid grey;
+		display:flex;
+		padding-left:30px;
+		padding-top:20px;
+		.link{
+			border-top:1px solid grey;
+			border-left:1px solid grey;
+			border-right:1px solid grey;
+			padding:10px;
+			border-radius:5px 5px 0 0;
+			cursor:pointer;
+			margin-right:15px;
+			&.selected {
+				background-color:@blue;
+				color:white;
+				border:none;
+				transform:translateY(1px);
+				box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.2);
+			}
+		}
+	}
+	.body {
+		overflow:hidden;
+		.part {
+			animation:0.2s show;
+			display:none;
+			padding:30px;
+			&.selected {
+				display:block;
+			}
+		}
+	}
+}
+
+#CHORD {
+	padding:15px;
+	margin-left:20px;
+	margin-top:20px;
+	box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.4);
+	border-radius:20px;
+	.button {
+		color:@purple;
+		border:2px solid @purple;
+		
+		&:hover { background-color:@purple; color:white; }
+		margin-top:20px;
+		p { margin:0; align-items:center; display:flex;}
+		span { margin-right:3px;}
+	}
+}
+
+.button {
+	display:inline-block;
+	cursor:pointer;
+	border-radius:5px;
+	padding:0 9px;
+	box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+.logo-font {
+	font-family:"LOGO";
+	font-size:30px;
+}
+
+@keyframes show {
+	from {
+		opacity:0;
+	} to {
+		opacity:1;
 	}
 }

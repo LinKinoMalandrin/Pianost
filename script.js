@@ -63,7 +63,7 @@ function changeSelection() {
 }
 
 function printChords() {
-	let chords = document.getElementById('CHORDS');
+	let chords = document.getElementById('CHORDS').getElementsByClassName('content')[0];
 	let index = KEYS.indexOf(CURRENT);
 
 	chords.innerHTML = "";
@@ -90,11 +90,11 @@ function printChord(chords, chord, more) {
 	let array = getNotes(chord, more);
 	let noteSplit = chord.split('');
 	if (noteSplit.length == 2)
-		chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\')\"><p>"
-	+noteSplit[0]+"<span class='diese'>"+noteSplit[1]+"</span><span class='more'>"+more+"</span></p><div class='play' onclick=\"playChord("+array+")\">F</div>\n";
+		chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\', 4)\"><p>"
+	+noteSplit[0]+"<span class='diese'>"+noteSplit[1]+"</span><span class='more'>"+more+"</span></p>\n";
 	else
-		chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\')\"><p>"
-	+noteSplit[0]+"<span class='more'>"+more+"</span></p><div class='play' onclick=\"playChord("+array+")\">F</div>\n";
+		chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\', 4)\"><p>"
+	+noteSplit[0]+"<span class='more'>"+more+"</span></p>\n";
 }
 
 function getNotes(fondamental, plus) {
@@ -117,30 +117,21 @@ function getNotes(fondamental, plus) {
 	return array;
 }
 
-function showChord(chord, more) {
+function showChord(chord, more, starting) {
 
-	let chordsKeys = [chord];
+	let chordsKeys = getChordArray(chord, more, starting);
 
-	if (more == '') {
-		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 4) % 12]);
-		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 7) % 12]);
-	} else if (more == 'm') {
-		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 3) % 12]);
-		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 7) % 12]);
-	} else if (more == '5') {
-		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 7) % 12]);
-	} else if (more == 'dim') {
-		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 3) % 12]);
-		chordsKeys.push(KEYS[(KEYS.indexOf(chord) + 6) % 12]);
-	}
+	let chordEl = document.getElementById('CHORD');
 
-	let keys = document.getElementsByClassName('key');
-	for (let key of keys) {
+	for (let key of chordEl.getElementsByClassName('key')) {
 		key.classList.remove('chord');
-		for (let note of chordsKeys)
+		for (let note of chordsKeys) {
 			if (key.classList.contains(note))
 				key.classList.add('chord');
+		}
 	}
+
+	document.getElementById('PLAY').onclick = function() { playChord(chordsKeys); };
 }
 
 function playKey(key) {
@@ -153,4 +144,42 @@ function playChord(array) {
 	for (let note of array) {
 		playKey(note);
 	}
+}
+
+function showPart(swtch, part, button) {
+	let swtchElement = document.getElementById(swtch);
+
+	for (let link of swtchElement.getElementsByClassName('link')) {
+		link.classList.remove('selected');
+	}
+	button.classList.add('selected');
+	for (let part of swtchElement.getElementsByClassName('part')) {
+		part.classList.remove('selected');
+	}
+	document.getElementById(part).classList.add('selected');
+}
+
+function getChordArray(fondamentale, more, starting) {
+	let array = [fondamentale+""+starting];
+	let i = KEYS.indexOf(fondamentale);
+	if (more == '') {
+		if (i > 7) array.push(KEYS[(i + 4) % 12]+""+(starting+1));
+		else array.push(KEYS[(i + 4) % 12]+""+starting);
+		if (i > 4) array.push(KEYS[(i + 7) % 12]+""+(starting+1));
+		else array.push(KEYS[(i + 7) % 12]+""+starting);
+
+	} else if (more == 'm') {
+		if (i > 8) array.push(KEYS[(i + 3) % 12]+""+(starting+1));
+		else array.push(KEYS[(i + 3) % 12]+""+starting);
+		if (i > 4) array.push(KEYS[(i + 7) % 12]+""+(starting+1));
+		else array.push(KEYS[(i + 7) % 12]+""+starting);
+
+	} else if (more == 'dim') {
+		if (i > 8) array.push(KEYS[(i + 3) % 12]+""+(starting+1));
+		else array.push(KEYS[(i + 3) % 12]+""+starting);
+		if (i > 5) array.push(KEYS[(i + 6) % 12]+""+(starting+1));
+		else array.push(KEYS[(i + 6) % 12]+""+starting);
+
+	}
+	return array;
 }

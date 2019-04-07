@@ -6,63 +6,223 @@
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-<audio src="audio/C.mp3" id="audio-C"></audio>
-<audio src="audio/Cd.mp3" id="audio-C#"></audio>
-<audio src="audio/D.mp3" id="audio-D"></audio>
-<audio src="audio/Dd.mp3" id="audio-D#"></audio>
-<audio src="audio/E.mp3" id="audio-E"></audio>
-<audio src="audio/F.mp3" id="audio-F"></audio>
-<audio src='audio/Fd.mp3' id="audio-F#"></audio>
-<audio src="audio/G.mp3" id="audio-G"></audio>
-<audio src="audio/Gd.mp3" id="audio-G#"></audio>
-<audio src="audio/A.mp3" id="audio-A"></audio>
-<audio src="audio/Ad.mp3" id="audio-A#"></audio>
-<audio src="audio/B.mp3" id="audio-B"></audio>
+<audio src="audio/C5.mp3" id="audio-C5"></audio>
+<audio src="audio/Cd5.mp3" id="audio-C#5"></audio>
+<audio src="audio/D5.mp3" id="audio-D5"></audio>
+<audio src="audio/Dd5.mp3" id="audio-D#5"></audio>
+<audio src="audio/E5.mp3" id="audio-E5"></audio>
+<audio src="audio/F5.mp3" id="audio-F5"></audio>
+<audio src='audio/Fd5.mp3' id="audio-F#5"></audio>
+<audio src="audio/G5.mp3" id="audio-G5"></audio>
+<audio src="audio/Gd5.mp3" id="audio-G#5"></audio>
+<audio src="audio/A5.mp3" id="audio-A5"></audio>
+<audio src="audio/Ad5.mp3" id="audio-A#5"></audio>
+<audio src="audio/B5.mp3" id="audio-B5"></audio>
+<audio src="audio/C4.mp3" id="audio-C4"></audio>
+<audio src="audio/Cd4.mp3" id="audio-C#4"></audio>
+<audio src="audio/D4.mp3" id="audio-D4"></audio>
+<audio src="audio/Dd4.mp3" id="audio-D#4"></audio>
+<audio src="audio/E4.mp3" id="audio-E4"></audio>
+<audio src="audio/F4.mp3" id="audio-F4"></audio>
+<audio src='audio/Fd4.mp3' id="audio-F#4"></audio>
+<audio src="audio/G4.mp3" id="audio-G4"></audio>
+<audio src="audio/Gd4.mp3" id="audio-G#4"></audio>
+<audio src="audio/A4.mp3" id="audio-A4"></audio>
+<audio src="audio/Ad4.mp3" id="audio-A#4"></audio>
+<audio src="audio/B4.mp3" id="audio-B4"></audio>
+<audio src="audio/C6.mp3" id="audio-C6"></audio>
+<audio src="audio/Cd6.mp3" id="audio-C#6"></audio>
+<audio src="audio/D6.mp3" id="audio-D6"></audio>
+<audio src="audio/Dd6.mp3" id="audio-D#6"></audio>
+<audio src="audio/E6.mp3" id="audio-E6"></audio>
+<audio src="audio/F6.mp3" id="audio-F6"></audio>
+<audio src='audio/Fd6.mp3' id="audio-F#6"></audio>
+<audio src="audio/G6.mp3" id="audio-G6"></audio>
+<audio src="audio/Gd6.mp3" id="audio-G#6"></audio>
+<audio src="audio/A6.mp3" id="audio-A6"></audio>
+<audio src="audio/Ad6.mp3" id="audio-A#6"></audio>
+<audio src="audio/B6.mp3" id="audio-B6"></audio>
 
 <div id="PIANO">
+<div class="piano">
 	<div class="black">
 		<div class="container">
-			<div class="key C#" onclick="playKey('C#')"><p>C<span class='diese'>#</span></p></div>
-			<div class="key D#" onclick="playKey('D#')"><p>D<span class='diese'>#</span></p></div>
+			<div class="key C#" onclick="playKey('C#4')"><p>C<span class='diese'>#</span>4</p></div>
+			<div class="key D#" onclick="playKey('D#4')"><p>D<span class='diese'>#</span>4</p></div>
 		</div>
 		<div class="container">
-			<div class="key F#" onclick="playKey('F#')"><p>F<span class='diese'>#</span></p></div>
-			<div class="key G#" onclick="playKey('G#')"><p>G<span class='diese'>#</span></p></div>
-			<div class="key A#" onclick="playKey('A#')"><p>A<span class='diese'>#</span></p></div>
+			<div class="key F#" onclick="playKey('F#4')"><p>F<span class='diese'>#</span>4</p></div>
+			<div class="key G#" onclick="playKey('G#4')"><p>G<span class='diese'>#</span>4</p></div>
+			<div class="key A#" onclick="playKey('A#4')"><p>A<span class='diese'>#</span>4</p></div>
 		</div>
 	</div>
 	<div class="white">
-		<div class="key C" onclick="playKey('C')">C</div>
-		<div class="key D" onclick="playKey('D')">D</div>
-		<div class="key E" onclick="playKey('E')">E</div>
-		<div class="key F" onclick="playKey('F')">F</div>
-		<div class="key G" onclick="playKey('G')">G</div>
-		<div class="key A" onclick="playKey('A')">A</div>
-		<div class="key B" onclick="playKey('B')">B</div>
+		<div class="key C" onclick="playKey('C4')">C4</div>
+		<div class="key D" onclick="playKey('D4')">D4</div>
+		<div class="key E" onclick="playKey('E4')">E4</div>
+		<div class="key F" onclick="playKey('F4')">F4</div>
+		<div class="key G" onclick="playKey('G4')">G4</div>
+		<div class="key A" onclick="playKey('A4')">A4</div>
+		<div class="key B" onclick="playKey('B4')">B4</div>
+	</div>
+</div>
+<div class="piano">
+	<div class="black">
+		<div class="container">
+			<div class="key C#" onclick="playKey('C#5')"><p>C<span class='diese'>#</span>5</p></div>
+			<div class="key D#" onclick="playKey('D#5')"><p>D<span class='diese'>#</span>5</p></div>
+		</div>
+		<div class="container">
+			<div class="key F#" onclick="playKey('F#5')"><p>F<span class='diese'>#</span>5</p></div>
+			<div class="key G#" onclick="playKey('G#5')"><p>G<span class='diese'>#</span>5</p></div>
+			<div class="key A#" onclick="playKey('A#5')"><p>A<span class='diese'>#</span>5</p></div>
+		</div>
+	</div>
+	<div class="white">
+		<div class="key C" onclick="playKey('C5')">C5</div>
+		<div class="key D" onclick="playKey('D5')">D5</div>
+		<div class="key E" onclick="playKey('E5')">E5</div>
+		<div class="key F" onclick="playKey('F5')">F5</div>
+		<div class="key G" onclick="playKey('G5')">G5</div>
+		<div class="key A" onclick="playKey('A5')">A5</div>
+		<div class="key B" onclick="playKey('B5')">B5</div>
+	</div>
+</div>
+<div class="piano">
+	<div class="black">
+		<div class="container">
+			<div class="key C#" onclick="playKey('C#6')"><p>C<span class='diese'>#</span>6</p></div>
+			<div class="key D#" onclick="playKey('D#6')"><p>D<span class='diese'>#</span>6</p></div>
+		</div>
+		<div class="container">
+			<div class="key F#" onclick="playKey('F#6')"><p>F<span class='diese'>#</span>6</p></div>
+			<div class="key G#" onclick="playKey('G#6')"><p>G<span class='diese'>#</span>6</p></div>
+			<div class="key A#" onclick="playKey('A#6')"><p>A<span class='diese'>#</span>6</p></div>
+		</div>
+	</div>
+	<div class="white">
+		<div class="key C" onclick="playKey('C6')">C6</div>
+		<div class="key D" onclick="playKey('D6')">D6</div>
+		<div class="key E" onclick="playKey('E6')">E6</div>
+		<div class="key F" onclick="playKey('F6')">F6</div>
+		<div class="key G" onclick="playKey('G6')">G6</div>
+		<div class="key A" onclick="playKey('A6')">A6</div>
+		<div class="key B" onclick="playKey('B6')">B6</div>
+	</div>
+</div>
+</div>
+
+<div class="switch" id="SWITCH">
+	<div class="head">
+		<div class="link selected" onclick="showPart('SWITCH', 'VIEWER', this)">Viewer</div>
+		<div class="link" onclick="showPart('SWITCH', 'FINDER', this)">Finder</div>
+	</div>
+	<div class="body">
+		<div class="part selected" id="VIEWER">
+			<div class="container-row">
+				<div id="CIRCLE">
+					<div class="note-1 selkey selected" id="sel-C" onclick="toggleKeys('C')">C</div>
+					<div class="note-2 selkey" id="sel-G" onclick="toggleKeys('G')"><p>G</p></div>
+					<div class="note-3 selkey" id="sel-D" onclick="toggleKeys('D')"><p>D</p></div>
+					<div class="note-4 selkey" id="sel-E" onclick="toggleKeys('E')"><p>E</p></div>
+					<div class="note-5 selkey" id="sel-A" onclick="toggleKeys('A')"><p>A</p></div>
+					<div class="note-6 selkey" id="sel-B" onclick="toggleKeys('B')"><p>B</p></div>
+					<div class="note-7 selkey" id="sel-F#" onclick="toggleKeys('F#')"><p>F<span class='diese'>#</span></p></div>
+					<div class="note-8 selkey" id="sel-C#" onclick="toggleKeys('C#')"><p>C<span class='diese'>#</span></p></div>
+					<div class="note-9 selkey" id="sel-G#" onclick="toggleKeys('G#')"><p>G<span class='diese'>#</span></p></div>
+					<div class="note-10 selkey" id="sel-D#" onclick="toggleKeys('D#')"><p>D<span class='diese'>#</span></p></div>
+					<div class="note-11 selkey" id="sel-A#" onclick="toggleKeys('A#')"><p>A<span class='diese'>#</span></p></div>
+					<div class="note-12 selkey" id="sel-F" onclick="toggleKeys('F')"><p>F</p></div>
+					<div class="selection left" onclick="changeSelection()" id="SELECT">
+						<div class='ton'>Major</div>
+						<div class='ton'>Minor</div>
+						<div class="back"></div>
+					</div>
+				</div>
+				<div id="CHORDS">
+					<div class="head">Related Chords</div>
+					<div class="content"></div>
+				</div>
+				<div id="CHORD">
+					<div class="container-row">
+<div class="piano">
+	<div class="black">
+		<div class="container">
+			<div class="key C#4" onclick="playKey('C#4')"><p>C<span class='diese'>#</span>4</p></div>
+			<div class="key D#4" onclick="playKey('D#4')"><p>D<span class='diese'>#</span>4</p></div>
+		</div>
+		<div class="container">
+			<div class="key F#4" onclick="playKey('F#4')"><p>F<span class='diese'>#</span>4</p></div>
+			<div class="key G#4" onclick="playKey('G#4')"><p>G<span class='diese'>#</span>4</p></div>
+			<div class="key A#4" onclick="playKey('A#4')"><p>A<span class='diese'>#</span>4</p></div>
+		</div>
+	</div>
+	<div class="white">
+		<div class="key C4" onclick="playKey('C4')">C4</div>
+		<div class="key D4" onclick="playKey('D4')">D4</div>
+		<div class="key E4" onclick="playKey('E4')">E4</div>
+		<div class="key F4" onclick="playKey('F4')">F4</div>
+		<div class="key G4" onclick="playKey('G4')">G4</div>
+		<div class="key A4" onclick="playKey('A4')">A4</div>
+		<div class="key B4" onclick="playKey('B4')">B4</div>
+	</div>
+</div>
+<div class="piano">
+	<div class="black">
+		<div class="container">
+			<div class="key C#5" onclick="playKey('C#5')"><p>C<span class='diese'>#</span>5</p></div>
+			<div class="key D#5" onclick="playKey('D#5')"><p>D<span class='diese'>#</span>5</p></div>
+		</div>
+		<div class="container">
+			<div class="key F#5" onclick="playKey('F#5')"><p>F<span class='diese'>#</span>5</p></div>
+			<div class="key G#5" onclick="playKey('G#5')"><p>G<span class='diese'>#</span>5</p></div>
+			<div class="key A#5" onclick="playKey('A#5')"><p>A<span class='diese'>#</span>5</p></div>
+		</div>
+	</div>
+	<div class="white">
+		<div class="key C5" onclick="playKey('C5')">C5</div>
+		<div class="key D5" onclick="playKey('D5')">D5</div>
+		<div class="key E5" onclick="playKey('E5')">E5</div>
+		<div class="key F5" onclick="playKey('F5')">F5</div>
+		<div class="key G5" onclick="playKey('G5')">G5</div>
+		<div class="key A5" onclick="playKey('A5')">A5</div>
+		<div class="key B5" onclick="playKey('B5')">B5</div>
+	</div>
+</div>
+<div class="piano">
+	<div class="black">
+		<div class="container">
+			<div class="key C#6" onclick="playKey('C#6')"><p>C<span class='diese'>#</span>6</p></div>
+			<div class="key D#6" onclick="playKey('D#6')"><p>D<span class='diese'>#</span>6</p></div>
+		</div>
+		<div class="container">
+			<div class="key F#6" onclick="playKey('F#6')"><p>F<span class='diese'>#</span>6</p></div>
+			<div class="key G#6" onclick="playKey('G#6')"><p>G<span class='diese'>#</span>6</p></div>
+			<div class="key A#6" onclick="playKey('A#6')"><p>A<span class='diese'>#</span>6</p></div>
+		</div>
+	</div>
+	<div class="white">
+		<div class="key C6" onclick="playKey('C6')">C6</div>
+		<div class="key D6" onclick="playKey('D6')">D6</div>
+		<div class="key E6" onclick="playKey('E6')">E6</div>
+		<div class="key F6" onclick="playKey('F6')">F6</div>
+		<div class="key G6" onclick="playKey('G6')">G6</div>
+		<div class="key A6" onclick="playKey('A6')">A6</div>
+		<div class="key B6" onclick="playKey('B6')">B6</div>
+	</div>
+</div>
+				</div>
+				<div class="button" id=PLAY>
+					<p><span class='logo-font'>F</span>Play</p>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="part" id="FINDER">
+			Toto
+		</div>
 	</div>
 </div>
 
-<div class="container-row">
-	<div id="CIRCLE">
-		<div class="note-1 selkey selected" id="sel-C" onclick="toggleKeys('C')">C</div>
-		<div class="note-2 selkey" id="sel-G" onclick="toggleKeys('G')"><p>G</p></div>
-		<div class="note-3 selkey" id="sel-D" onclick="toggleKeys('D')"><p>D</p></div>
-		<div class="note-4 selkey" id="sel-E" onclick="toggleKeys('E')"><p>E</p></div>
-		<div class="note-5 selkey" id="sel-A" onclick="toggleKeys('A')"><p>A</p></div>
-		<div class="note-6 selkey" id="sel-B" onclick="toggleKeys('B')"><p>B</p></div>
-		<div class="note-7 selkey" id="sel-F#" onclick="toggleKeys('F#')"><p>F<span class='diese'>#</span></p></div>
-		<div class="note-8 selkey" id="sel-C#" onclick="toggleKeys('C#')"><p>C<span class='diese'>#</span></p></div>
-		<div class="note-9 selkey" id="sel-G#" onclick="toggleKeys('G#')"><p>G<span class='diese'>#</span></p></div>
-		<div class="note-10 selkey" id="sel-D#" onclick="toggleKeys('D#')"><p>D<span class='diese'>#</span></p></div>
-		<div class="note-11 selkey" id="sel-A#" onclick="toggleKeys('A#')"><p>A<span class='diese'>#</span></p></div>
-		<div class="note-12 selkey" id="sel-F" onclick="toggleKeys('F')"><p>F</p></div>
-		<div class="selection left" onclick="changeSelection()" id="SELECT">
-			<div class='ton'>Major</div>
-			<div class='ton'>Minor</div>
-			<div class="back"></div>
-		</div>
-	</div>
-	<div id="CHORDS"></div>
-</div>
 </body>
 </html>
