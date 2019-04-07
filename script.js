@@ -88,7 +88,13 @@ function printChords() {
 
 function printChord(chords, chord, more) {
 	let array = getNotes(chord, more);
-	chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\')\">"+chord+more+"<div class='play' onclick=\"playChord("+array+")\">F</div>\n";
+	let noteSplit = chord.split('');
+	if (noteSplit.length == 2)
+		chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\')\"><p>"
+	+noteSplit[0]+"<span class='diese'>"+noteSplit[1]+"</span><span class='more'>"+more+"</span></p><div class='play' onclick=\"playChord("+array+")\">F</div>\n";
+	else
+		chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\')\"><p>"
+	+noteSplit[0]+"<span class='more'>"+more+"</span></p><div class='play' onclick=\"playChord("+array+")\">F</div>\n";
 }
 
 function getNotes(fondamental, plus) {
