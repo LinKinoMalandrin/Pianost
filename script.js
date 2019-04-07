@@ -1,8 +1,11 @@
+
 let KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 let GAM = "Major";
 let CURRENT = 'C';
 let CURRENT_CHORD = [];
 let STARTING = 4;
+let INSTRUMENT = 'Synth';
+let SYNTH = new Tone.Synth().toMaster();
 
 
 function toggleKeys(key) {
@@ -157,9 +160,14 @@ function showChord() {
 }
 
 function playKey(key) {
-	let audio = document.getElementById('audio-'+key);
-	audio.currentTime = 0;
-	audio.play();
+	if (INSTRUMENT == 'Piano'){
+		let audio = document.getElementById('audio-'+key);
+		audio.currentTime = 0;
+		audio.play();
+	} else if (INSTRUMENT == 'Synth') {
+		let synth = new Tone.Synth().toMaster()
+		synth.triggerAttackRelease(key, "8n");
+	}
 }
 
 function playChord(array) {
@@ -221,4 +229,9 @@ function switchStarting(option) {
 		choice.classList.remove('selected');
 	option.classList.add('selected');
 	showChord();
+}
+
+function testSound() {
+	var synth = new Tone.Synth().toMaster();
+	synth.triggerAttackRelease("C4", "8n");
 }
