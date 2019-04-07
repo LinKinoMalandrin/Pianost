@@ -87,7 +87,28 @@ function printChords() {
 }
 
 function printChord(chords, chord, more) {
-	chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\')\">"+chord+more+"</div>\n";
+	let array = getNotes(chord, more);
+	chords.innerHTML += "<div class='chord' onclick=\"showChord(\'"+chord+"\', \'"+more+"\')\">"+chord+more+"<div class='play' onclick=\"playChord("+array+")\">F</div>\n";
+}
+
+function getNotes(fondamental, plus) {
+	let array = "['"+fondamental+"'";
+	let i = KEYS.indexOf(fondamental);
+
+	if (plus == '') {
+		array += ", '"+KEYS[(i + 4) % 12]+"'";
+		array += ", '"+KEYS[(i + 7) % 12]+"'";
+	} else if (plus == 'm') {
+		array += ", '"+KEYS[(i + 3) % 12]+"'";
+		array += ", '"+KEYS[(i + 7) % 12]+"'";
+	} else if (plus == 'dim') {
+		array += ", '"+KEYS[(i + 3) % 12]+"'";
+		array += ", '"+KEYS[(i + 6) % 12]+"'";
+	} else if (plus == '5') {
+		array += ", '"+KEYS[(i + 7) % 12]+"'";
+	}
+	array += "]";
+	return array;
 }
 
 function showChord(chord, more) {
@@ -113,5 +134,17 @@ function showChord(chord, more) {
 		for (let note of chordsKeys)
 			if (key.classList.contains(note))
 				key.classList.add('chord');
+	}
+}
+
+function playKey(key) {
+	let audio = document.getElementById('audio-'+key);
+	audio.currentTime = 0;
+	audio.play();
+}
+
+function playChord(array) {
+	for (let note of array) {
+		playKey(note);
 	}
 }

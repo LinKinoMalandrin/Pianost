@@ -2,6 +2,10 @@
   font-family: 'REGULAR';
   src: url("Poppins-Regular.ttf");
 }
+@font-face {
+  font-family: 'LOGO';
+  src: url("SocialType.ttf");
+}
 * {
   box-sizing: border-box;
   font-family: 'REGULAR';
@@ -417,16 +421,27 @@
   width: 200px;
 }
 #CHORDS .chord {
-  padding-left: 20px;
+  padding-left: 15px;
+  padding-right: 7px;
   cursor: pointer;
   width: 100%;
   height: 40px;
   display: flex;
   align-items: center;
   border-radius: 40px;
+  justify-content: space-between;
 }
 #CHORDS .chord:hover {
   background-color: #8c3acf;
   color: white;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+#CHORDS .chord:hover .play {
+  color: white;
+}
+#CHORDS .chord .play {
+  font-family: "LOGO";
+  color: white;
+  font-size: 36px;
+  color: #8c3acf;
 }

@@ -6,28 +6,39 @@
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-
+<audio src="audio/C.mp3" id="audio-C"></audio>
+<audio src="audio/Cd.mp3" id="audio-C#"></audio>
+<audio src="audio/D.mp3" id="audio-D"></audio>
+<audio src="audio/Dd.mp3" id="audio-D#"></audio>
+<audio src="audio/E.mp3" id="audio-E"></audio>
+<audio src="audio/F.mp3" id="audio-F"></audio>
+<audio src='audio/Fd.mp3' id="audio-F#"></audio>
+<audio src="audio/G.mp3" id="audio-G"></audio>
+<audio src="audio/Gd.mp3" id="audio-G#"></audio>
+<audio src="audio/A.mp3" id="audio-A"></audio>
+<audio src="audio/Ad.mp3" id="audio-A#"></audio>
+<audio src="audio/B.mp3" id="audio-B"></audio>
 
 <div id="PIANO">
 	<div class="black">
 		<div class="container">
-			<div class="key C#">C#</div>
-			<div class="key D#">D#</div>
+			<div class="key C#" onclick="playKey('C#')">C#</div>
+			<div class="key D#" onclick="playKey('D#')">D#</div>
 		</div>
 		<div class="container">
-			<div class="key F#">F#</div>
-			<div class="key G#">G#</div>
-			<div class="key A#">A#</div>
+			<div class="key F#" onclick="playKey('F#')">F#</div>
+			<div class="key G#" onclick="playKey('G#')">G#</div>
+			<div class="key A#" onclick="playKey('A#')">A#</div>
 		</div>
 	</div>
 	<div class="white">
-		<div class="key C">C</div>
-		<div class="key D">D</div>
-		<div class="key E">E</div>
-		<div class="key F">F</div>
-		<div class="key G">G</div>
-		<div class="key A">A</div>
-		<div class="key B">B</div>
+		<div class="key C" onclick="playKey('C')">C</div>
+		<div class="key D" onclick="playKey('D')">D</div>
+		<div class="key E" onclick="playKey('E')">E</div>
+		<div class="key F" onclick="playKey('F')">F</div>
+		<div class="key G" onclick="playKey('G')">G</div>
+		<div class="key A" onclick="playKey('A')">A</div>
+		<div class="key B" onclick="playKey('B')">B</div>
 	</div>
 </div>
 
@@ -53,6 +64,5 @@
 	</div>
 	<div id="CHORDS"></div>
 </div>
-
 </body>
 </html>

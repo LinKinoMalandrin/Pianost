@@ -4,7 +4,12 @@
 
 @font-face {
 	font-family:'REGULAR';
-	src:url("Poppins-Regular.ttf")
+	src:url("Poppins-Regular.ttf");
+}
+
+@font-face {
+	font-family:'LOGO';
+	src:url("SocialType.ttf");
 }
 
 * { box-sizing:border-box; font-family:'REGULAR'; }
@@ -170,16 +175,27 @@
 	padding:15px;
 	width:200px;
 	.chord {
-		padding-left:20px;
+		padding-left:15px;
+		padding-right:7px;
 		cursor:pointer;
 		width:100%;
 		height:40px;
 		display:flex;
 		align-items:center;
 		border-radius:40px;
+		justify-content:space-between;
 		&:hover { 
 			background-color:@purple; color:white;
-			box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.4); 
+			box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.4);
+			.play {
+				color:white;
+			}
+		}
+		.play {
+			font-family:"LOGO";
+			color:white;
+			font-size:36px;
+			color:@purple;
 		}
 	}
 }
