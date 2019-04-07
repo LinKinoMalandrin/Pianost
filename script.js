@@ -6,6 +6,12 @@ let STARTING = 4;
 let INSTRUMENT = 'Piano';
 let SYNTH = new Tone.PolySynth().toMaster();
 
+let scroll = document.getElementById("");
+scroll.addEventListener('click', function(e) {
+	let x = e.clientX;
+	let el = e.getBoundingClientRect();
+	let percentage = (x - el.left) / el.width;
+});
 
 function toggleKeys(key) {
 	if (key != CURRENT) {
@@ -243,5 +249,14 @@ function switchInstrument(button) {
 		button.classList.remove('right');
 		button.classList.add('left');
 		INSTRUMENT = 'Piano';
+	}
+}
+
+function verifyInputBPM(input) {
+	let value = input.value;
+	if (value == "" || !(/^\d+$/.test(value)) || value.length > 3) {
+		input.classList.add('error');
+	} else {
+		input.classList.remove('error');
 	}
 }
