@@ -1,7 +1,7 @@
 let KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 let GAM = "Major";
 let CURRENT = 'C';
-let offset = 512;
+let offset = 256;
 let CURRENT_CHORD = [];
 let STARTING = 4;
 let INSTRUMENT = 'Synth';
