@@ -4,9 +4,20 @@
 @reddark:#a8323d;
 @purpledark:#5c2887;
 
+@dark:#303030;
+@grey:#565656;
+
+@circlew:40px * 5 + 10px * 6;
+@chordsw:200px;
+
 @font-face {
 	font-family:'REGULAR';
 	src:url("Poppins-Regular.ttf");
+}
+
+@font-face {
+	font-family:'BOLD';
+	src:url("Poppins-Bold.ttf");
 }
 
 @font-face {
@@ -16,9 +27,27 @@
 
 * { box-sizing:border-box; font-family:'REGULAR'; }
 
+span.bold { font-family:'BOLD'; }
+
 .container-row {
 	display:flex;
 	align-items:start;
+}
+#WAVEFORM {
+	height:200px;
+	width:200px;
+	display:flex;
+	align-items:center;
+	justify-content:space-between;
+	overflow:hidden;
+	.shadow-b();
+	margin-left:20px;
+	border-radius:15px;
+	.bubble {
+		width:2px;
+		height:4px;
+		background:black;
+	}
 }
 
 .diese {
@@ -29,7 +58,11 @@
 }
 
 #PIANO {
-display:flex;
+	display:flex;
+	padding:20px;
+	border-radius:15px;
+	margin-left:20px;
+	.shadow-b();
 }
 
 .piano {
@@ -200,8 +233,10 @@ display:flex;
 	box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.4);
 	border-radius:20px;
 	padding:15px;
-	width:200px;
+	width:@chordsw;
 	.head {
+		padding:0 0 10px 0;
+		justify-content:center;
 		margin-bottom:10px;
 	}
 	.chord {
@@ -267,14 +302,61 @@ display:flex;
 	}
 }
 
+#SELECTTHEME {
+	display:flex;
+	align-items:center;
+	height:30px;
+	margin:20px;
+	p { margin-right:20px; }
+	.radio {
+		cursor:pointer;
+		width:40px;
+		height:20px;
+		margin-right:20px;
+		background-color:@blue;
+		border-radius:20px;
+		display:flex;
+		align-items:center;
+		&::before {
+			transition:0.1s transform;
+			will-change:transform;
+			display:block;
+			width:14px;
+			height:14px;
+			content:"";
+			border-radius:30px;
+			background:white;
+		}
+		&.left {
+			&::before {
+				transform:translateX(3px);
+			}
+		}
+		&.right {
+			&::before {
+				transform:translateX(22px);
+			}
+		}
+	}
+}
+
 #CHORD {
-	padding:15px;
+	width:calc(100% - @circlew - @chordsw - 40px);
+	padding:20px;
 	margin-left:20px;
 	margin-top:20px;
 	box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.4);
 	border-radius:20px;
+	.piano-container {
+		padding:5px;
+		padding-bottom:20px;
+		max-width:100%;
+		overflow-x:auto;
+		overflow-y:hidden;
+	}
 	.button {
 		color:@purple;
+		background-color:white;
 		border:2px solid @purple;
 		
 		&:hover { background-color:@purple; color:white; }
@@ -342,8 +424,8 @@ span.more {
 	height:100%;
 	margin-left:20px;
 	border-radius:10px;
-	padding:15px;
-	.shadow-l();
+	padding:20px;
+	.shadow-b();
 	.select {
 		display:flex;
 		align-items:center;
@@ -400,4 +482,57 @@ input {
 	border:none;
 	.shadow-l();
 	&.error { background-color:@red; color:white; }
+}
+
+body.dark {
+	color:white;
+	background:@dark;
+	#PIANO { background:@grey; }
+	#CIRCLE {
+		background-color:@grey;
+		color:white;
+		.note-dark() { color:white; }
+		.note-1 { color:white; }
+		.note-2 { color:white; }
+		.note-3 { color:white; }
+		.note-4 { color:white; }
+		.note-5 { color:white; }
+		.note-6 { color:white; }
+		.note-7 { color:white; }
+		.note-8 { color:white; }
+		.note-9 { color:white; }
+		.note-10 { color:white; }
+		.note-11 { color:white; }
+		.note-12 { color:white; }
+		#SELECT {
+			&.left { .ton:nth-child(2) { color:black; } }
+			&.right { .ton:nth-child(1) { color:black; } }
+		}
+	}
+	#CHORDS, #INSTRUMENT, #CHORD {
+		background-color:@grey;
+	}
+	.piano {
+		.white {
+			.key { 
+				background:black;
+				color:white;
+				&:active { background:@dark; }
+				&.selected { 
+					background:@red; 
+					&:active { background:@reddark; }
+				}
+				&.chord { background:@purple; }
+			}
+		}
+		.black {
+			.key {
+				background-color:white;
+				color:black;
+				&.selected { background:@red; color:white; }
+				&.chord { background:@purple; color:white; }
+			}
+		}
+	}
+	#WAVEFORM { background:@grey; .bubble { background:lightgreen; }}
 }

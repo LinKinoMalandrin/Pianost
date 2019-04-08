@@ -1,18 +1,81 @@
 let KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 let GAM = "Major";
 let CURRENT = 'C';
+let offset = 512;
 let CURRENT_CHORD = [];
 let STARTING = 4;
-let INSTRUMENT = 'Piano';
-let SYNTH = new Tone.PolySynth().toMaster();
+let INSTRUMENT = 'Synth';
+let SYNTH = new Tone.PolySynth(7, Tone.Synth).toMaster();
+let WAVE = new Tone.Waveform(offset);
+SYNTH.connect(WAVE);
+setTimeout(refreshWave, 50);
 
-let scrollDiv = document.getElementById("VOLUMEDRAG");
-scrollDiv.addEventListener("click", function(e) {
-	let x = e.clientX;
-	let el = e.getBoundingClientRect();
-	let percentage = (x - el.left) / el.width;
-	scrollDiv.getElementsByClassName('level')[0].style.translateX = x;
-});
+setPianoChord();
+setBubbles();
+generateAudioImports();
+
+
+let lastEvent;
+let heldKeys = {};
+
+window.onkeydown = function(e) {
+   let key = e.keyCode ? e.keyCode : e.which;
+
+   if (lastEvent && lastEvent.keyCode == key) {
+        return;
+    }
+    lastEvent = e;
+    heldKeys[key] = true;
+
+   switch (key) {
+   	   case 81 : triggerKey('C4'); break;
+   	   case 83 : triggerKey('D4'); break;
+   	   case 68 : triggerKey('E4'); break;
+   	   case 70 : triggerKey('F4'); break;
+   	   case 71 : triggerKey('G4'); break;
+   	   case 72 : triggerKey('A4'); break;
+   	   case 74 : triggerKey('B4'); break;
+   	   case 75 : triggerKey('C5'); break;
+   	   case 76 : triggerKey('D5'); break;
+   	   case 77 : triggerKey('E5'); break;
+
+   	   case 90 : triggerKey('C#4'); break;
+   	   case 69 : triggerKey('D#4'); break;
+   	   case 84 : triggerKey('F#4'); break;
+   	   case 89 : triggerKey('G#4'); break;
+   	   case 85 : triggerKey('A#4'); break;
+   	   case 79 : triggerKey('C#5'); break;
+   	   case 80 : triggerKey('D#5'); break;
+   }
+}
+window.onkeyup = function(e) {
+   var key = e.keyCode ? e.keyCode : e.which;
+
+   lastEvent = null;
+   delete heldKeys[key];
+
+   switch (key) {
+   	   case 81 : releaseKey('C4'); break;
+   	   case 83 : releaseKey('D4'); break;
+   	   case 68 : releaseKey('E4'); break;
+   	   case 70 : releaseKey('F4'); break;
+   	   case 71 : releaseKey('G4'); break;
+   	   case 72 : releaseKey('A4'); break;
+   	   case 74 : releaseKey('B4'); break;
+   	   case 75 : releaseKey('C5'); break;
+   	   case 76 : releaseKey('D5'); break;
+   	   case 77 : releaseKey('E5'); break;
+
+   	   case 90 : releaseKey('C#4'); break;
+   	   case 69 : releaseKey('D#4'); break;
+   	   case 84 : releaseKey('F#4'); break;
+   	   case 89 : releaseKey('G#4'); break;
+   	   case 85 : releaseKey('A#4'); break;
+   	   case 79 : releaseKey('C#5'); break;
+   	   case 80 : releaseKey('D#5'); break;
+   }
+}
+
 
 function toggleKeys(key) {
 	if (key != CURRENT) {
@@ -182,6 +245,7 @@ function playChord(array) {
 		}
 	} else {
 		SYNTH.triggerAttackRelease(array, "8n");
+		setTimeout(refreshWave, 100);
 	}
 	
 }
@@ -253,11 +317,120 @@ function switchInstrument(button) {
 	}
 }
 
+function switchTheme(button) {
+	if (button.classList.contains('left')) {
+		button.classList.remove('left');
+		button.classList.add('right');
+		document.body.classList.add('dark');
+	} else if (button.classList.contains('right')) {
+		button.classList.remove('right');
+		button.classList.add('left');
+		document.body.classList.remove('dark');
+	}
+}
+
 function verifyInputBPM(input) {
 	let value = input.value;
 	if (value == "" || !(/^\d+$/.test(value)) || value.length > 3) {
 		input.classList.add('error');
 	} else {
 		input.classList.remove('error');
+	}
+}
+
+function setPianoChord() {
+	let e = document.getElementById("PIANOCHORD");
+	appendPiano(e, 1, 10, 
+		function (e, key, i) {
+			triggerKey(key+i);
+		},
+		function (e, key, i) {
+			releaseKey(key+i);
+		});
+}
+
+function setBubbles() {
+	let e = document.getElementById('WAVEFORM');
+
+	for (let i = 0; i < offset; i++) {
+		e.innerHTML += "<div class='bubble' id='bubble-"+i+"'></div>";
+	}
+}
+
+function refreshWave() {
+	let floats = WAVE.getValue();
+	for (let i = 0; i < offset; i++) {
+		document.getElementById("bubble-"+i).style.transform = "translateY("+parseInt(floats[i] * 100)+"px)";
+	}
+	setTimeout(refreshWave, 20);
+}
+
+function triggerKey(key) {
+	SYNTH.triggerAttack([key], undefined, 1);
+}
+function releaseKey(key) {
+	SYNTH.triggerRelease([key]);
+}
+function generateAudioImports() {
+	let e = document.getElementById('AUDIOIMPORTS');
+	let notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+	let dieses = ['C', 'D', 'F', 'G', 'A'];
+	let inner = "";
+	for (let i = 1; i < 10; i++) {
+		for (let key of notes) inner += "<audio src='audio/"+key+"5.mp3' id='audio-"+key+"5'></audio>\n";
+		for (let key of dieses) inner += "<audio src='audio/"+key+"d5.mp3' id='audio-"+key+"#5'></audio>\n";
+	}
+	e.innerHTML += inner;
+}
+
+function appendPiano(e, from, to, mousedown=undefined, mouseup=undefined) {
+	
+	let dieses = [['C#', 'D#'], ['F#', 'G#', 'A#']];
+	let notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
+
+	for (let i = from; i < (to + 1); i++) {
+		let piano = document.createElement('div');
+		piano.className = 'piano';
+		let black = document.createElement('div');
+		black.className = 'black';
+		let container = document.createElement('div');
+		container.className = 'container';
+
+		for (let key of dieses[0]){
+			let keyE = document.createElement('div');
+			keyE.className = 'key';
+			keyE.innerHTML = key+i;
+
+			if (mousedown != undefined) keyE.addEventListener('mousedown', function () { mousedown(e, key, i); });
+			if (mouseup != undefined) keyE.addEventListener('mouseup', function () { mouseup(e, key, i); });
+			container.appendChild(keyE);
+		}
+		black.appendChild(container);
+		container = document.createElement('div');
+		container.className = 'container';
+
+		for (let key of dieses[1]){
+			let keyE = document.createElement('div');
+			keyE.className = 'key';
+			keyE.innerHTML = key+i;
+			if (mousedown != undefined) keyE.addEventListener('mousedown', function () { mousedown(e, key, i); });
+			if (mouseup != undefined) keyE.addEventListener('mouseup', function () { mouseup(e, key, i); });
+			container.appendChild(keyE);
+		}
+		black.appendChild(container);
+		piano.appendChild(black);
+
+		let white = document.createElement('div');
+		white.className = 'white';
+		for (let key of notes){
+			let keyE = document.createElement('div');
+			keyE.className = 'key';
+			keyE.innerHTML = key+i;
+			if (mousedown != undefined) keyE.addEventListener('mousedown', function () { mousedown(e, key, i); });
+			if (mouseup != undefined) keyE.addEventListener('mouseup', function () { mouseup(e, key, i); });
+			white.appendChild(keyE);
+		}
+		piano.appendChild(white);
+		e.appendChild(piano);
 	}
 }

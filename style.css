@@ -3,6 +3,10 @@
   src: url("Poppins-Regular.ttf");
 }
 @font-face {
+  font-family: 'BOLD';
+  src: url("Poppins-Bold.ttf");
+}
+@font-face {
   font-family: 'LOGO';
   src: url("SocialType.ttf");
 }
@@ -10,9 +14,28 @@
   box-sizing: border-box;
   font-family: 'REGULAR';
 }
+span.bold {
+  font-family: 'BOLD';
+}
 .container-row {
   display: flex;
   align-items: start;
+}
+#WAVEFORM {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  margin-left: 20px;
+  border-radius: 15px;
+}
+#WAVEFORM .bubble {
+  width: 2px;
+  height: 4px;
+  background: black;
 }
 .diese {
   position: relative;
@@ -22,6 +45,10 @@
 }
 #PIANO {
   display: flex;
+  padding: 20px;
+  border-radius: 15px;
+  margin-left: 20px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
 }
 .piano {
   margin-right: 5px;
@@ -458,6 +485,8 @@
   width: 200px;
 }
 #CHORDS .head {
+  padding: 0 0 10px 0;
+  justify-content: center;
   margin-bottom: 10px;
 }
 #CHORDS .chord {
@@ -521,15 +550,59 @@
 .switch .body .part.selected {
   display: block;
 }
+#SELECTTHEME {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin: 20px;
+}
+#SELECTTHEME p {
+  margin-right: 20px;
+}
+#SELECTTHEME .radio {
+  cursor: pointer;
+  width: 40px;
+  height: 20px;
+  margin-right: 20px;
+  background-color: #007bff;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+}
+#SELECTTHEME .radio::before {
+  transition: 0.1s transform;
+  will-change: transform;
+  display: block;
+  width: 14px;
+  height: 14px;
+  content: "";
+  border-radius: 30px;
+  background: white;
+}
+#SELECTTHEME .radio.left::before {
+  transform: translateX(3px);
+}
+#SELECTTHEME .radio.right::before {
+  transform: translateX(22px);
+}
 #CHORD {
-  padding: 15px;
+  width: calc(100% - 260px - 200px - 40px);
+  padding: 20px;
   margin-left: 20px;
   margin-top: 20px;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
   border-radius: 20px;
 }
+#CHORD .piano-container {
+  padding: 5px;
+  padding-bottom: 20px;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
 #CHORD .button {
   color: #8c3acf;
+  background-color: white;
   border: 2px solid #8c3acf;
   margin-top: 20px;
 }
@@ -594,8 +667,8 @@ span.more {
   height: 100%;
   margin-left: 20px;
   border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
 }
 #INSTRUMENT .select {
   display: flex;
@@ -650,4 +723,96 @@ input {
 input.error {
   background-color: #dc3545;
   color: white;
+}
+body.dark {
+  color: white;
+  background: #303030;
+}
+body.dark #PIANO {
+  background: #565656;
+}
+body.dark #CIRCLE {
+  background-color: #565656;
+  color: white;
+}
+body.dark #CIRCLE .note-1 {
+  color: white;
+}
+body.dark #CIRCLE .note-2 {
+  color: white;
+}
+body.dark #CIRCLE .note-3 {
+  color: white;
+}
+body.dark #CIRCLE .note-4 {
+  color: white;
+}
+body.dark #CIRCLE .note-5 {
+  color: white;
+}
+body.dark #CIRCLE .note-6 {
+  color: white;
+}
+body.dark #CIRCLE .note-7 {
+  color: white;
+}
+body.dark #CIRCLE .note-8 {
+  color: white;
+}
+body.dark #CIRCLE .note-9 {
+  color: white;
+}
+body.dark #CIRCLE .note-10 {
+  color: white;
+}
+body.dark #CIRCLE .note-11 {
+  color: white;
+}
+body.dark #CIRCLE .note-12 {
+  color: white;
+}
+body.dark #CIRCLE #SELECT.left .ton:nth-child(2) {
+  color: black;
+}
+body.dark #CIRCLE #SELECT.right .ton:nth-child(1) {
+  color: black;
+}
+body.dark #CHORDS,
+body.dark #INSTRUMENT,
+body.dark #CHORD {
+  background-color: #565656;
+}
+body.dark .piano .white .key {
+  background: black;
+  color: white;
+}
+body.dark .piano .white .key:active {
+  background: #303030;
+}
+body.dark .piano .white .key.selected {
+  background: #dc3545;
+}
+body.dark .piano .white .key.selected:active {
+  background: #a8323d;
+}
+body.dark .piano .white .key.chord {
+  background: #8c3acf;
+}
+body.dark .piano .black .key {
+  background-color: white;
+  color: black;
+}
+body.dark .piano .black .key.selected {
+  background: #dc3545;
+  color: white;
+}
+body.dark .piano .black .key.chord {
+  background: #8c3acf;
+  color: white;
+}
+body.dark #WAVEFORM {
+  background: #565656;
+}
+body.dark #WAVEFORM .bubble {
+  background: lightgreen;
 }
