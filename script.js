@@ -396,41 +396,34 @@ function appendPiano(e, from, to, mousedown=undefined, mouseup=undefined) {
 		let container = document.createElement('div');
 		container.className = 'container';
 
-		for (let key of dieses[0]){
-			let keyE = document.createElement('div');
-			keyE.className = 'key';
-			keyE.innerHTML = key+i;
+		for (let key of dieses[0])
+			container.appendChild(newKey(key, i, mouseup, mousedown));
 
-			if (mousedown != undefined) keyE.addEventListener('mousedown', function () { mousedown(e, key, i); });
-			if (mouseup != undefined) keyE.addEventListener('mouseup', function () { mouseup(e, key, i); });
-			container.appendChild(keyE);
-		}
 		black.appendChild(container);
 		container = document.createElement('div');
 		container.className = 'container';
 
-		for (let key of dieses[1]){
-			let keyE = document.createElement('div');
-			keyE.className = 'key';
-			keyE.innerHTML = key+i;
-			if (mousedown != undefined) keyE.addEventListener('mousedown', function () { mousedown(e, key, i); });
-			if (mouseup != undefined) keyE.addEventListener('mouseup', function () { mouseup(e, key, i); });
-			container.appendChild(keyE);
-		}
+		for (let key of dieses[1])
+			container.appendChild(newKey(key, i, mouseup, mousedown));
+
 		black.appendChild(container);
 		piano.appendChild(black);
 
 		let white = document.createElement('div');
 		white.className = 'white';
-		for (let key of notes){
-			let keyE = document.createElement('div');
-			keyE.className = 'key';
-			keyE.innerHTML = key+i;
-			if (mousedown != undefined) keyE.addEventListener('mousedown', function () { mousedown(e, key, i); });
-			if (mouseup != undefined) keyE.addEventListener('mouseup', function () { mouseup(e, key, i); });
-			white.appendChild(keyE);
-		}
+		for (let key of notes)
+			container.appendChild(newKey(key, i, mouseup, mousedown));
+
 		piano.appendChild(white);
 		e.appendChild(piano);
 	}
+}
+
+function newKey(key, i, mouseup, mousedown) {
+	let keyE = document.createElement('div');
+	keyE.className = 'key';
+	keyE.innerHTML = key+i;
+	if (mousedown != undefined) keyE.addEventListener('mousedown', function () { mousedown(e, key, i); });
+	if (mouseup != undefined) keyE.addEventListener('mouseup', function () { mouseup(e, key, i); });
+	return keyE;
 }
