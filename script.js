@@ -1,8 +1,10 @@
 let KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 let GAM = "Major";
 let CURRENT = 'C';
-let offset = 256;
+let offset = 512;
 let CURRENT_CHORD = [];
+let CURRENT_FOND = "";
+let CURRENT_MORE = "";
 let STARTING = 4;
 let INSTRUMENT = 'Synth';
 let SYNTH = new Tone.PolySynth(7, Tone.Synth).toMaster();
@@ -10,72 +12,29 @@ let WAVE = new Tone.Waveform(offset);
 SYNTH.connect(WAVE);
 setTimeout(refreshWave, 50);
 
-setPianoChord();
 setBubbles();
 generateAudioImports();
 
 
-let lastEvent;
-let heldKeys = {};
+appendPiano(
+	document.getElementById('SCALEBODY').getElementsByClassName('piano-container')[0],
+	1,
+	10,
+	function (e, key, i) {
+		triggerKey(key+i);
+	},
+	function (e, key, i) {
+		releaseKey(key+i);
+	}
+);
 
-window.onkeydown = function(e) {
-   let key = e.keyCode ? e.keyCode : e.which;
-
-   if (lastEvent && lastEvent.keyCode == key) {
-        return;
-    }
-    lastEvent = e;
-    heldKeys[key] = true;
-
-   switch (key) {
-   	   case 81 : triggerKey('C4'); break;
-   	   case 83 : triggerKey('D4'); break;
-   	   case 68 : triggerKey('E4'); break;
-   	   case 70 : triggerKey('F4'); break;
-   	   case 71 : triggerKey('G4'); break;
-   	   case 72 : triggerKey('A4'); break;
-   	   case 74 : triggerKey('B4'); break;
-   	   case 75 : triggerKey('C5'); break;
-   	   case 76 : triggerKey('D5'); break;
-   	   case 77 : triggerKey('E5'); break;
-
-   	   case 90 : triggerKey('C#4'); break;
-   	   case 69 : triggerKey('D#4'); break;
-   	   case 84 : triggerKey('F#4'); break;
-   	   case 89 : triggerKey('G#4'); break;
-   	   case 85 : triggerKey('A#4'); break;
-   	   case 79 : triggerKey('C#5'); break;
-   	   case 80 : triggerKey('D#5'); break;
-   }
-}
-window.onkeyup = function(e) {
-   var key = e.keyCode ? e.keyCode : e.which;
-
-   lastEvent = null;
-   delete heldKeys[key];
-
-   switch (key) {
-   	   case 81 : releaseKey('C4'); break;
-   	   case 83 : releaseKey('D4'); break;
-   	   case 68 : releaseKey('E4'); break;
-   	   case 70 : releaseKey('F4'); break;
-   	   case 71 : releaseKey('G4'); break;
-   	   case 72 : releaseKey('A4'); break;
-   	   case 74 : releaseKey('B4'); break;
-   	   case 75 : releaseKey('C5'); break;
-   	   case 76 : releaseKey('D5'); break;
-   	   case 77 : releaseKey('E5'); break;
-
-   	   case 90 : releaseKey('C#4'); break;
-   	   case 69 : releaseKey('D#4'); break;
-   	   case 84 : releaseKey('F#4'); break;
-   	   case 89 : releaseKey('G#4'); break;
-   	   case 85 : releaseKey('A#4'); break;
-   	   case 79 : releaseKey('C#5'); break;
-   	   case 80 : releaseKey('D#5'); break;
-   }
-}
-
+let buttonPlayChord = document.getElementById('PLAYCHORD');
+buttonPlayChord.addEventListener('mousedown', function (e) {
+	triggerKeys(CURRENT_CHORD);
+});
+buttonPlayChord.addEventListener('mouseup', function (e) {
+	releaseKeys(CURRENT_CHORD);
+});
 
 function toggleKeys(key) {
 	if (key != CURRENT) {
@@ -83,34 +42,31 @@ function toggleKeys(key) {
 		document.getElementById("sel-"+key).classList.add('selected');
 		CURRENT = key;
 	}
-	let piano = document.getElementById('PIANO');
 
-	let toColor = [];
-	if (GAM === 'Major')
-		toColor = getMajor(key);
-	else if (GAM === 'Minor')
-		toColor = getMinor(key);
 
-	for (let key of piano.getElementsByClassName('key')) {
-		key.classList.remove('selected');
-		key.classList.remove('chord');
-	}
-	for (let key of toColor)
-		for (let note of piano.getElementsByClassName(key))
-			note.classList.add('selected');
+	let toColor = getScale(key);
+	
 	printChords();
+}
+
+
+function getScale(key) {
+	if (GAM === 'Major')
+		return getMajor(key);
+	else if (GAM === 'Minor')
+		return getMinor(key);
 }
 
 function getMajor(key) {
 	let index = KEYS.indexOf(key);
 	let array = [key];
 
+	array.push(KEYS[(index + 2) % KEYS.length]);
+	array.push(KEYS[(index + 4) % KEYS.length]);
 	array.push(KEYS[(index + 5) % KEYS.length]);
-
-	for (let count = 0; count < 5; count++) {
-		index = (index + 7) % KEYS.length;
-		array.push(KEYS[index]);
-	}
+	array.push(KEYS[(index + 7) % KEYS.length]);
+	array.push(KEYS[(index + 9) % KEYS.length]);
+	array.push(KEYS[(index + 11) % KEYS.length]);
 
 	return array;
 }
@@ -119,7 +75,6 @@ function getMinor(key) {
 	let index = KEYS.indexOf(key);
 	return getMajor(KEYS[(index + 3) % KEYS.length]);
 }
-
 
 function changeSelection() {
 	let select = document.getElementById("SELECT");
@@ -139,8 +94,8 @@ function changeSelection() {
 function printChords() {
 	let chords = document.getElementById('CHORDS').getElementsByClassName('content')[0];
 	let index = KEYS.indexOf(CURRENT);
-
 	chords.innerHTML = "";
+
 	if (GAM == 'Minor') {
 		printChord(chords, CURRENT, 'm');
 		printChord(chords, KEYS[(index + 3) % 12], '');
@@ -161,71 +116,59 @@ function printChords() {
 }
 
 function printChord(chords, chord, more) {
-	let array = getNotes(chord, more);
+	let array = getChordArray(chord, more);
 	let noteSplit = chord.split('');
-	if (noteSplit.length == 2)
-		chords.innerHTML += "<div class='chord' onclick=\"changeChord(\'"+chord+"\', \'"+more+"\', 4)\"><p>"
-	+noteSplit[0]+"<span class='diese'>"+noteSplit[1]+"</span><span class='more'>"+more+"</span></p>\n";
-	else
-		chords.innerHTML += "<div class='chord' onclick=\"changeChord(\'"+chord+"\', \'"+more+"\', 4)\"><p>"
-	+noteSplit[0]+"<span class='more'>"+more+"</span></p>\n";
+
+	let row = createElement('div', 'chord');
+	row.innerHTML = (noteSplit.length == 1) ? 
+		"<p>"+noteSplit[0]+"<span class='more'>"+more+"</span></p>" :
+		"<p>"+noteSplit[0]+"<span class='diese'>"+noteSplit[1]+"</span><span class='more'>"+more+"</span></p>";
+		console.log(chord);
+	row.addEventListener('click', function (e) {
+		printChordInViewer(chord, more, array);
+		CURRENT_FOND = chord;
+		CURRENT_MORE = more;
+		let c = document.getElementById('CHORD');
+		c.style.display = 'flex';
+	});
+	chords.appendChild(row);
 }
 
-function getNotes(fondamental, plus) {
-	let array = "['"+fondamental+"'";
-	let i = KEYS.indexOf(fondamental);
+function printChordInViewer(chord, more, array) {
+	let view = document.getElementById('CHORD');
+	let head = view.getElementsByClassName('head')[0];
+	let piano = view.getElementsByClassName('piano-container')[0];
+	let button = view.getElementsByClassName('button')[0];
 
-	if (plus == '') {
-		array += ", '"+KEYS[(i + 4) % 12]+"'";
-		array += ", '"+KEYS[(i + 7) % 12]+"'";
-	} else if (plus == 'm') {
-		array += ", '"+KEYS[(i + 3) % 12]+"'";
-		array += ", '"+KEYS[(i + 7) % 12]+"'";
-	} else if (plus == 'dim') {
-		array += ", '"+KEYS[(i + 3) % 12]+"'";
-		array += ", '"+KEYS[(i + 6) % 12]+"'";
-	} else if (plus == '5') {
-		array += ", '"+KEYS[(i + 7) % 12]+"'";
+	let ns = chord.split('');
+	head.innerHTML = (ns.length == 1) ? 
+		"<p>"+ns[0]+"<span class='more'>"+more+"</span></p>" :
+		"<p>"+ns[0]+"<span class='diese'>"+ns[1]+"</span><span class='more'>"+more+"</span></p>";
+
+	piano.innerHTML = "";
+	appendLittlePiano(piano, STARTING, STARTING+1, function (e, key, i) {
+			triggerKey(key+i);
+		},
+		function (e, key, i) {
+			releaseKey(key+i);
+		});
+	let find = findOrder(array, STARTING);
+	let ar = getChordArray(chord, more);
+	CURRENT_CHORD = find;
+	console.log(find);
+	console.log(ar);
+	for (let i = 0; i < find.length; i++) {
+		piano.getElementsByClassName(find[i])[0].classList.add('selected');
+		piano.getElementsByClassName(find[i])[0].setAttribute('nth', ar[i][1]);
 	}
-	array += "]";
-	return array;
+
 }
 
-function changeChord(chord, more) {
-	let chordWithoutOrder = getChordArray(chord, more);
-	CURRENT_CHORD = chordWithoutOrder;
-
-	let starting = STARTING;
-
-	let chordsKeys = findOrder(chordWithoutOrder, starting);
-
-	let chordEl = document.getElementById('CHORD');
-
-	for (let key of chordEl.getElementsByClassName('key')) {
-		key.classList.remove('chord');
-		for (let note of chordsKeys) {
-			if (key.classList.contains(note))
-				key.classList.add('chord');
-		}
-	}
-
-	document.getElementById('PLAY').onclick = function() { playChord(chordsKeys); };
-}
-
-function showChord() {
-	let chordsKeys = findOrder(CURRENT_CHORD, STARTING);
-
-	let chordEl = document.getElementById('CHORD');
-
-	for (let key of chordEl.getElementsByClassName('key')) {
-		key.classList.remove('chord');
-		for (let note of chordsKeys) {
-			if (key.classList.contains(note))
-				key.classList.add('chord');
-		}
-	}
-
-	document.getElementById('PLAY').onclick = function() { playChord(chordsKeys); };
+function createElement(type, classlist="") {
+	let e = document.createElement(type);
+	if (Array.isArray(classlist)) e.classList = classlist;
+	else e.className = classlist;
+	return e;
 }
 
 function playKey(key) {
@@ -245,9 +188,8 @@ function playChord(array) {
 		}
 	} else {
 		SYNTH.triggerAttackRelease(array, "8n");
-		setTimeout(refreshWave, 100);
-	}
-	
+		setTimeout(refreshWave, 50);
+	}	
 }
 
 function showPart(swtch, part, button) {
@@ -264,19 +206,19 @@ function showPart(swtch, part, button) {
 }
 
 function getChordArray(fondamentale, more) {
-	let array = [fondamentale];
+	let array = [[fondamentale, 'first']];
 	let i = KEYS.indexOf(fondamentale);
 	if (more == '') {
-		array.push(KEYS[(i + 4) % 12]);
-		array.push(KEYS[(i + 7) % 12]);
+		array.push([KEYS[(i + 4) % 12], 'third-M']);
+		array.push([KEYS[(i + 7) % 12], 'fifth']);
 
 	} else if (more == 'm') {
-		array.push(KEYS[(i + 3) % 12]);
-		array.push(KEYS[(i + 7) % 12]);
+		array.push([KEYS[(i + 3) % 12], 'third-m']);
+		array.push([KEYS[(i + 7) % 12], 'fifth']);
 
 	} else if (more == 'dim') {
-		array.push(KEYS[(i + 3) % 12]);
-		array.push(KEYS[(i + 6) % 12]);
+		array.push([KEYS[(i + 3) % 12], 'third-m']);
+		array.push([KEYS[(i + 6) % 12], 'fifth-dim']);
 
 	}
 	return array;
@@ -287,22 +229,14 @@ function findOrder(array, starting) {
 	let index = 0;
 	let previousIndex = 0;
 	for (let i = 0; i < array.length; i++) {
-		index = KEYS.indexOf(array[i]);
+		index = KEYS.indexOf(array[i][0]);
 		if (index < previousIndex) {
 			starting++;
 		}
 		previousIndex = index;
-		toReturn.push(array[i]+""+starting);
+		toReturn.push(array[i][0]+""+starting);
 	}
 	return toReturn;
-}
-
-function switchStarting(option) {
-	STARTING = parseInt(option.getAttribute('value'));
-	for (let choice of document.getElementById('SELECTSTARTING').getElementsByClassName('choice'))
-		choice.classList.remove('selected');
-	option.classList.add('selected');
-	showChord();
 }
 
 function switchInstrument(button) {
@@ -362,7 +296,7 @@ function refreshWave() {
 	for (let i = 0; i < offset; i++) {
 		document.getElementById("bubble-"+i).style.transform = "translateY("+parseInt(floats[i] * 100)+"px)";
 	}
-	setTimeout(refreshWave, 20);
+	setTimeout(refreshWave, 10);
 }
 
 function triggerKey(key) {
@@ -371,6 +305,13 @@ function triggerKey(key) {
 function releaseKey(key) {
 	SYNTH.triggerRelease([key]);
 }
+function triggerKeys(keys) {
+	SYNTH.triggerAttack(keys, undefined, 1);
+}
+function releaseKeys(keys) {
+	SYNTH.triggerRelease(keys);
+}
+
 function generateAudioImports() {
 	let e = document.getElementById('AUDIOIMPORTS');
 	let notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
@@ -412,18 +353,109 @@ function appendPiano(e, from, to, mousedown=undefined, mouseup=undefined) {
 		let white = document.createElement('div');
 		white.className = 'white';
 		for (let key of notes)
-			container.appendChild(newKey(key, i, mouseup, mousedown));
+			white.appendChild(newKey(key, i, mouseup, mousedown));
 
 		piano.appendChild(white);
 		e.appendChild(piano);
 	}
 }
+function appendLittlePiano(e, from, to, mousedown=undefined, mouseup=undefined) {
+	
+	let dieses = [['C#', 'D#'], ['F#', 'G#', 'A#']];
+	let notes = ['C', 'D', 'E', 'F', 'G', 'A', 'B'];
 
+	for (let i = from; i < (to + 1); i++) {
+		let piano = document.createElement('div');
+		piano.className = 'piano-little';
+		let black = document.createElement('div');
+		black.className = 'black';
+		let container = document.createElement('div');
+		container.className = 'container';
+
+		for (let key of dieses[0])
+			container.appendChild(newKey(key, i, mouseup, mousedown));
+
+		black.appendChild(container);
+		container = document.createElement('div');
+		container.className = 'container';
+
+		for (let key of dieses[1])
+			container.appendChild(newKey(key, i, mouseup, mousedown));
+
+		black.appendChild(container);
+		piano.appendChild(black);
+
+		let white = document.createElement('div');
+		white.className = 'white';
+		for (let key of notes)
+			white.appendChild(newKey(key, i, mouseup, mousedown));
+
+		piano.appendChild(white);
+		e.appendChild(piano);
+	}
+}
 function newKey(key, i, mouseup, mousedown) {
 	let keyE = document.createElement('div');
-	keyE.className = 'key';
+	keyE.classList.add('key');
+	keyE.classList.add('key-'+key);
+	keyE.classList.add(key+""+i);
 	keyE.innerHTML = key+i;
-	if (mousedown != undefined) keyE.addEventListener('mousedown', function () { mousedown(e, key, i); });
-	if (mouseup != undefined) keyE.addEventListener('mouseup', function () { mouseup(e, key, i); });
+	if (mousedown != undefined) keyE.addEventListener('mousedown', function (e) { mousedown(e, key, i); });
+	if (mouseup != undefined) keyE.addEventListener('mouseup', function (e) { mouseup(e, key, i); });
 	return keyE;
+}
+
+function startingMore() {
+	if (STARTING == 8) return;
+	document.getElementsByClassName('opt-'+STARTING)[0].classList.remove('selected');
+	STARTING++;
+	document.getElementsByClassName('opt-'+STARTING)[0].classList.add('selected');
+	
+	refreshChord();
+}
+
+function startingLess() {
+	if (STARTING == 1) return;
+	document.getElementsByClassName('opt-'+STARTING)[0].classList.remove('selected');
+	STARTING--;
+	document.getElementsByClassName('opt-'+STARTING)[0].classList.add('selected');
+	
+	refreshChord();
+}
+
+function refreshChord() {
+	printChordInViewer(CURRENT_FOND, CURRENT_MORE, getChordArray(CURRENT_FOND, CURRENT_MORE));
+}
+
+function showScale() {
+	let modal = document.getElementById('SCALE');
+	modal.style.display = 'flex';
+	let scale = document.getElementById('SCALEBODY');
+	scale.getElementsByClassName('head')[0].innerHTML = "Scale of "+CURRENT+" "+GAM;
+	let piano = scale.getElementsByClassName('piano-container')[0];
+	setScaleKeys();
+	window.onclick = function (e) {
+		if (e.target == modal) {
+			modal.style.display = 'none';
+		}
+	}
+}
+
+function setScaleKeys() {
+	let piano = document.getElementById('SCALEBODY').getElementsByClassName('piano-container')[0];
+	for (key of piano.getElementsByClassName('key')) {
+		key.classList.remove('selected');
+	}
+	let scaleKeys = [];
+	if (GAM == 'Major') {
+		scaleKeys = getMajor(CURRENT);
+		for (scaleKey of scaleKeys) {
+			for (key of piano.getElementsByClassName('key-'+scaleKey)) { key.classList.add('selected'); key.setAttribute('nth', 'sixth'); }
+		}
+	} else if (GAM == 'Minor') {
+		scaleKeys = getMinor(CURRENT);
+		for (scaleKey of scaleKeys) {
+			for (key of piano.getElementsByClassName('key-'+scaleKey)) { key.classList.add('selected'); key.setAttribute('nth', 'sixth'); }
+		}
+	}
 }

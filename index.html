@@ -9,42 +9,6 @@
 <div id="AUDIOIMPORTS">
 	<!-- Js imports -->
 </div>
-<audio src="audio/C5.mp3" id="audio-C5"></audio>
-<audio src="audio/Cd5.mp3" id="audio-C#5"></audio>
-<audio src="audio/D5.mp3" id="audio-D5"></audio>
-<audio src="audio/Dd5.mp3" id="audio-D#5"></audio>
-<audio src="audio/E5.mp3" id="audio-E5"></audio>
-<audio src="audio/F5.mp3" id="audio-F5"></audio>
-<audio src='audio/Fd5.mp3' id="audio-F#5"></audio>
-<audio src="audio/G5.mp3" id="audio-G5"></audio>
-<audio src="audio/Gd5.mp3" id="audio-G#5"></audio>
-<audio src="audio/A5.mp3" id="audio-A5"></audio>
-<audio src="audio/Ad5.mp3" id="audio-A#5"></audio>
-<audio src="audio/B5.mp3" id="audio-B5"></audio>
-<audio src="audio/C4.mp3" id="audio-C4"></audio>
-<audio src="audio/Cd4.mp3" id="audio-C#4"></audio>
-<audio src="audio/D4.mp3" id="audio-D4"></audio>
-<audio src="audio/Dd4.mp3" id="audio-D#4"></audio>
-<audio src="audio/E4.mp3" id="audio-E4"></audio>
-<audio src="audio/F4.mp3" id="audio-F4"></audio>
-<audio src='audio/Fd4.mp3' id="audio-F#4"></audio>
-<audio src="audio/G4.mp3" id="audio-G4"></audio>
-<audio src="audio/Gd4.mp3" id="audio-G#4"></audio>
-<audio src="audio/A4.mp3" id="audio-A4"></audio>
-<audio src="audio/Ad4.mp3" id="audio-A#4"></audio>
-<audio src="audio/B4.mp3" id="audio-B4"></audio>
-<audio src="audio/C6.mp3" id="audio-C6"></audio>
-<audio src="audio/Cd6.mp3" id="audio-C#6"></audio>
-<audio src="audio/D6.mp3" id="audio-D6"></audio>
-<audio src="audio/Dd6.mp3" id="audio-D#6"></audio>
-<audio src="audio/E6.mp3" id="audio-E6"></audio>
-<audio src="audio/F6.mp3" id="audio-F6"></audio>
-<audio src='audio/Fd6.mp3' id="audio-F#6"></audio>
-<audio src="audio/G6.mp3" id="audio-G6"></audio>
-<audio src="audio/Gd6.mp3" id="audio-G#6"></audio>
-<audio src="audio/A6.mp3" id="audio-A6"></audio>
-<audio src="audio/Ad6.mp3" id="audio-A#6"></audio>
-<audio src="audio/B6.mp3" id="audio-B6"></audio>
 
 <div class="select" id="SELECTTHEME">
 	<p><span class='bold'>Change theme</span></p>
@@ -69,29 +33,34 @@
 
 <div class="switch" id="SWITCH">
 	<div class="head">
-		<div class="link" onclick="showPart('SWITCH', 'VIEWER', this)">Viewer</div>
-		<div class="link selected" onclick="showPart('SWITCH', 'FINDER', this)">Finder</div>
+		<div class="link selected" onclick="showPart('SWITCH', 'VIEWER', this)">Viewer</div>
+		<div class="link" onclick="showPart('SWITCH', 'FINDER', this)">Finder</div>
 	</div>
 	<div class="body">
-		<div class="part" id="VIEWER">
+		<div class="part selected" id="VIEWER">
 			<div class="container-row">
-				<div id="CIRCLE">
-					<div class="note-1 selkey selected" id="sel-C" onclick="toggleKeys('C')">C</div>
-					<div class="note-2 selkey" id="sel-G" onclick="toggleKeys('G')"><p>G</p></div>
-					<div class="note-3 selkey" id="sel-D" onclick="toggleKeys('D')"><p>D</p></div>
-					<div class="note-4 selkey" id="sel-E" onclick="toggleKeys('E')"><p>E</p></div>
-					<div class="note-5 selkey" id="sel-A" onclick="toggleKeys('A')"><p>A</p></div>
-					<div class="note-6 selkey" id="sel-B" onclick="toggleKeys('B')"><p>B</p></div>
-					<div class="note-7 selkey" id="sel-F#" onclick="toggleKeys('F#')"><p>F<span class='diese'>#</span></p></div>
-					<div class="note-8 selkey" id="sel-C#" onclick="toggleKeys('C#')"><p>C<span class='diese'>#</span></p></div>
-					<div class="note-9 selkey" id="sel-G#" onclick="toggleKeys('G#')"><p>G<span class='diese'>#</span></p></div>
-					<div class="note-10 selkey" id="sel-D#" onclick="toggleKeys('D#')"><p>D<span class='diese'>#</span></p></div>
-					<div class="note-11 selkey" id="sel-A#" onclick="toggleKeys('A#')"><p>A<span class='diese'>#</span></p></div>
-					<div class="note-12 selkey" id="sel-F" onclick="toggleKeys('F')"><p>F</p></div>
-					<div class="selection left" onclick="changeSelection()" id="SELECT">
-						<div class='ton'>Major</div>
-						<div class='ton'>Minor</div>
-						<div class="back"></div>
+				<div class="container-column">
+					<div id="CIRCLE">
+						<div class="note-1 selkey selected" id="sel-C" onclick="toggleKeys('C')">C</div>
+						<div class="note-2 selkey" id="sel-G" onclick="toggleKeys('G')"><p>G</p></div>
+						<div class="note-3 selkey" id="sel-D" onclick="toggleKeys('D')"><p>D</p></div>
+						<div class="note-4 selkey" id="sel-E" onclick="toggleKeys('E')"><p>E</p></div>
+						<div class="note-5 selkey" id="sel-A" onclick="toggleKeys('A')"><p>A</p></div>
+						<div class="note-6 selkey" id="sel-B" onclick="toggleKeys('B')"><p>B</p></div>
+						<div class="note-7 selkey" id="sel-F#" onclick="toggleKeys('F#')"><p>F<span class='diese'>#</span></p></div>
+						<div class="note-8 selkey" id="sel-C#" onclick="toggleKeys('C#')"><p>C<span class='diese'>#</span></p></div>
+						<div class="note-9 selkey" id="sel-G#" onclick="toggleKeys('G#')"><p>G<span class='diese'>#</span></p></div>
+						<div class="note-10 selkey" id="sel-D#" onclick="toggleKeys('D#')"><p>D<span class='diese'>#</span></p></div>
+						<div class="note-11 selkey" id="sel-A#" onclick="toggleKeys('A#')"><p>A<span class='diese'>#</span></p></div>
+						<div class="note-12 selkey" id="sel-F" onclick="toggleKeys('F')"><p>F</p></div>
+						<div class="selection left" onclick="changeSelection()" id="SELECT">
+							<div class='ton'>Major</div>
+							<div class='ton'>Minor</div>
+							<div class="back"></div>
+						</div>
+					</div>
+					<div id="SEEGAM">
+						<div class="button" onclick="showScale()">Show scale</div>
 					</div>
 				</div>
 				<div id="CHORDS">
@@ -100,9 +69,30 @@
 						
 					</div>
 				</div>
+				<div id="CHORD">
+					<div class="head"></div>
+					<div class="piano-container">
+						
+					</div>
+					<div class="container-row-center">
+						<p><span class='bold'>Starting note</span></p>
+					</div>
+					<div class='selection' id='SELECTSTARTING'>
+						<div class="arrow-left" onclick="startingLess()"></div>
+						<div class="opt-1 option" value="1">1<span class="more">st</span></div>
+						<div class="opt-2 option" value="2">2<span class="more">nd</span></div>
+						<div class="opt-3 option" value="3">3<span class="more">rd</span></div>
+						<div class="opt-4 option selected" value="4">4<span class="more">th</span></div>
+						<div class="opt-5 option" value="5">5<span class="more">th</span></div>
+						<div class="opt-6 option" value="6">6<span class="more">th</span></div>
+						<div class="opt-7 option" value="7">7<span class="more">th</span></div>
+						<div class="opt-8 option" value="8">8<span class="more">th</span></div>
+						<div class="arrow-right" onclick="startingMore()"></div>
+					</div>
+					<div class="container-row-center"><div class="button" id='PLAYCHORD'><div class='container-row-center'><p><span class='logo-font'>F</span>Play</p></div></div></div>
+				</div>
 			</div>
 		</div>
-	</div>
 		<div class="part selected" id="FINDER">
 			<div class="container-row">
 				
@@ -110,6 +100,15 @@
 		</div>
 	</div>
 </div>
+<div id="SCALE">
+	<div id="SCALEBODY">
+		<div class="head"></div>
+		<div class="piano-container">
+			
+		</div>
+	</div>
+</div>
+
 
 </body>
 <script type="text/javascript" src="script.js"></script>
