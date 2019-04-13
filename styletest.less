@@ -1,0 +1,128 @@
+@blue:#007bff;
+@bluedark:#0762c4;
+
+@red:#dc3545;
+@reddark:#a8323d;
+
+@purple:#8c3acf;
+@purpledark:#5c2887;
+
+@yellow:#f7e011;
+@yellowdark:#e8d210;
+
+@green:#49ce18;
+@greendark:#3fb215;
+
+@pink:#f4aaf7;
+@pinkdark:#dd9ae0;
+
+@orange:#eda831;
+@orangedark:#d19630;
+
+@dark:#303030;
+@grey:#565656;
+
+@circlew:40px * 5 + 10px * 6;
+@chordsw:200px;
+
+p { margin:0; }
+
+@font-face {
+	font-family:'REGULAR';
+	src:url("Poppins-Regular.ttf");
+}
+
+@font-face {
+	font-family:'BOLD';
+	src:url("Poppins-Bold.ttf");
+}
+
+@font-face {
+	font-family:'LOGO';
+	src:url("SocialType.ttf");
+}
+
+* { font-family:'REGULAR'; }
+
+.shadow-l() {
+	box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+.shadow-b() {
+	box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.4);
+}
+
+
+.piano-behavior(@width, @height, @fsb, @fsw) {
+	display:flex;
+	.octave {
+		display:flex;
+		margin-right:2px;
+		flex-direction:column;
+		.black {
+			width:@width;
+			height:calc((@height * 3) / 5);
+			display:flex;
+			position:absolute;
+			& > div {
+				display:flex;
+				&:nth-child(1) { 
+					width:calc((100% / 7) * 3);
+					.key {
+						width:calc(100% / 5);
+					}
+				}
+				&:nth-child(2) { 
+					width:calc((100% / 7) * 4);
+					.key {
+						width:calc(100% / 7);
+					}
+				}
+				justify-content:space-evenly;
+				.key {
+					background-color:black;
+					color:white;
+					font-size:@fsb;
+					&:active { background-color:@grey; }
+				}
+			}
+		}
+		.white {
+			width:@width;
+			height:@height;
+			display:flex;
+			justify-content:space-between;
+			.key {
+				width:calc((100% / 7) - 2px);
+				background-color:white;
+				color:black;
+				font-size:@fsw;
+				&:active { background-color:lightgrey; }
+			}
+		}
+
+		.key {
+			border-radius:0 0 3px 3px;
+			.shadow-l();
+			display:flex;
+			align-items:end;
+			justify-content:center;
+			cursor:pointer;
+			&.selected {
+				&[selection='chord'] {
+					background-color:@purple;
+					&:active { background-color:@purpledark; }
+					color:white;
+				}
+				&[selection='scale'] {
+					background-color:@red;
+					&:active { background-color:@reddark; }
+					color:white;
+				}
+			}
+		}
+	}
+}
+
+.piano {
+	.piano-behavior(300px, 160px, 10px, 15px);
+}
