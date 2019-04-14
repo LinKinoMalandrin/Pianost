@@ -1,28 +1,52 @@
-let KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+class Key {
 
-function Key(value, octave) {
+	constructor(value, octave) {
+		if (value == undefined) this.value = 0;
+		else if (isNaN(value)) this.value = KEYS.indexOf(value);
+		else this.value = value;
 
-	if (value == undefined) this.value = 0;
-	else this.value = KEYS.indexOf(value);
+		if (octave != undefined) this.value += octave * 12;
 
-	if (octave != undefined) this.value += octave * 12;
+		this.DOM = createElement('div', 'key');
+		this.DOM.classList.add(this.toString());
+		this.DOM.classList.add(this.keyString());
+		this.DOM.innerHTML = this.toString();
+		let str = this.toString();
+		addMouseUpDown(this.DOM, this);
+	}
 
-	this.setOctave = function (octave) { this.value = (this.value % 12) + 12 * octave; return this; }
-	this.upperOctave = function () { this.value += 12; return this; }
-	this.lessOctave = function () { this.value -= 12; return this; }
+	setOctave(octave) { this.value = (this.value % 12) + 12 * octave; return this; }
+	upperOctave() { this.value += 12; return this; }
+	lessOctave() { this.value -= 12; return this; }
+	getOctave() { return Math.trunc(this.value / 12); }
+	getKey() { return this.value % 12; }
 
-	this.addSemiTons = function (n) {
+	addSemiTons(n) {
 		this.value += n;
 		return this;
 	}
-	this.minusSemiTons = function (n) {
+	minusSemiTons(n) {
 		this.value -= n;
 		return this;
 	}
-	this.toString = function () {
+	toString() {
 		return KEYS[this.value % 12]+""+Math.trunc(this.value / 12);
 	}
-	this.keyString = function() {
+	keyString() {
 		return KEYS[this.value % 12];
+	}
+	select(attribute) {
+		this.DOM.classList.add('selected');
+		this.DOM.setAttribute('selection', attribute);
+	}
+	play() {
+		SYNTH.triggerAttack([this.toString()], undefined, 1);
+	}
+	stop() {
+		SYNTH.triggerRelease([this.toString()]);
+	}
+	clear() {
+		this.DOM.classList.remove('selected');
+		this.DOM.setAttribute('selection', '');
 	}
 }
