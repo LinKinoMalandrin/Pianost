@@ -42,6 +42,8 @@ p { margin:0; }
 	src:url("SocialType.ttf");
 }
 
+body { margin:0; padding:0;}
+
 * { font-family:'REGULAR'; }
 
 .shadow-l() {
@@ -51,6 +53,16 @@ p { margin:0; }
 	box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.4);
 }
 
+.container-row-center {
+	display:flex;
+	justify-content:center;
+}
+.container-column-center {
+	width:100%;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+}
 
 .piano-behavior(@width, @height, @fsb, @fsw) {
 	display:flex;
@@ -102,7 +114,7 @@ p { margin:0; }
 
 		.key {
 			border-radius:0 0 3px 3px;
-			.shadow-l();
+			.shadow-b();
 			display:flex;
 			align-items:end;
 			justify-content:center;
@@ -118,9 +130,156 @@ p { margin:0; }
 					&:active { background-color:@reddark; }
 					color:white;
 				}
+				&[selection='find'] {
+					background-color:@blue;
+					&:active { background-color:@bluedark; }
+					color:white;
+				}
 			}
 		}
 	}
+}
+
+.book {
+	width:100%;
+	& > .book-head {
+		display:flex;
+		border-bottom:1px solid grey;
+		padding:10px 5px 0 5px;
+		& > .book-part {
+			transform:translateY(1px);
+			margin-left:15px;
+			border-radius:3px 3px 0 0;
+			border:1px solid grey;
+			cursor:pointer;
+			padding:4px 8px;
+			&.selected {
+				color:white;
+				background-color:@blue;
+				border:1px solid @blue;
+			}
+		}
+	}
+	& >.book-body {
+		width:100%;
+		& >.book-part {
+			display:none;
+			flex-direction:column;
+			align-items:start;
+			&.selected {
+				display:flex;
+			}
+		}
+	}
+}
+
+.switch() {
+	display:flex;
+	align-items:center;
+	.part {
+		cursor:pointer;
+	}
+	.switch {
+		@h:20px;
+		@w:40px;
+		width:@w;
+		height:@h;
+		border-radius:20px;
+		background-color:@blue;
+		display:flex;
+		align-items:center;
+		cursor:pointer;
+		margin:0 10px;
+		&::before {
+			content:"";
+			transition:0.2s transform;
+			display:block;
+			background-color:white;
+			border-radius:@h;
+			width:@h - 6px;
+			height:@h - 6px;
+		}
+		&.left::before { transform:translateX(3px); }
+		&.right::before { transform:translateX(@w - @h + 3px); }
+	}
+}
+
+.button {
+	display:flex;
+	border-radius:3px;
+	cursor:pointer;
+	align-items:center;
+	padding:6px 8px;
+	border:3px solid @blue;
+	background-color:white;
+	color:@blue;
+	&:hover {
+		color:white;
+		background-color:@blue;
+	}
+}
+
+.arrow() {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	width:30px;
+	height:30px;
+	border-radius:40px;
+	border:3px solid @blue;
+	background-color:white;
+	cursor:pointer;
+	&::before {
+		content:"";
+		display:block;
+		width:12px;
+		height:12px;
+		border-bottom:3px solid @blue;
+		border-left:3px solid @blue;
+	}
+	&:hover {
+		background-color:@blue;
+		&::before {
+			border-color:white;
+		}
+	}
+}
+.arrow-left {
+	.arrow();
+	&::before {
+		transform:rotate(45deg);
+	}
+}
+.arrow-right {
+	.arrow();
+	&::before {
+		transform:rotate(-135deg);
+	}
+}
+
+#SwitchStarting {
+	display:flex;
+	align-items:center;
+	.item {
+		width:30px;
+		height:30px;
+		display:none;
+		justify-content:center;
+		align-items:center;
+		&.selected{ display:flex; }
+	}
+}
+
+#SwitchTonality {
+	.switch();
+}
+
+#Book {
+	.book();
+}
+
+#PianoScaleViewer, #PianoChordViewer, #PianoScaleFinder {
+	.piano-behavior(300px, 160px, 10px, 15px);
 }
 
 .piano {

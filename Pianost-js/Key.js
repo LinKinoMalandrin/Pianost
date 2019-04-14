@@ -39,6 +39,9 @@ class Key {
 		this.DOM.classList.add('selected');
 		this.DOM.setAttribute('selection', attribute);
 	}
+	selected() {
+		return this.DOM.classList.contains('selected');
+	}
 	play() {
 		SYNTH.triggerAttack([this.toString()], undefined, 1);
 	}
@@ -48,5 +51,11 @@ class Key {
 	clear() {
 		this.DOM.classList.remove('selected');
 		this.DOM.setAttribute('selection', '');
+	}
+	addClick(callback, piano) {
+		let thisbis = this;
+		this.DOM.addEventListener('click', function (e) {
+			callback(e, thisbis, piano);
+		});
 	}
 }

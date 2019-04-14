@@ -47,4 +47,9 @@ class Octave {
 		for (let key of this.keys)
 			key.clear();
 	}
+
+	addClickOnKeys(callback, piano) {
+		for (let key of this.keys)
+			key.addClick(callback, piano);
+	}
 }

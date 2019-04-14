@@ -13,8 +13,324 @@ p {
   font-family: 'LOGO';
   src: url("SocialType.ttf");
 }
+body {
+  margin: 0;
+  padding: 0;
+}
 * {
   font-family: 'REGULAR';
+}
+.container-row-center {
+  display: flex;
+  justify-content: center;
+}
+.container-column-center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.book {
+  width: 100%;
+}
+.book > .book-head {
+  display: flex;
+  border-bottom: 1px solid grey;
+  padding: 10px 5px 0 5px;
+}
+.book > .book-head > .book-part {
+  transform: translateY(1px);
+  margin-left: 15px;
+  border-radius: 3px 3px 0 0;
+  border: 1px solid grey;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.book > .book-head > .book-part.selected {
+  color: white;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+}
+.book > .book-body {
+  width: 100%;
+}
+.book > .book-body > .book-part {
+  display: none;
+  flex-direction: column;
+  align-items: start;
+}
+.book > .book-body > .book-part.selected {
+  display: flex;
+}
+.button {
+  display: flex;
+  border-radius: 3px;
+  cursor: pointer;
+  align-items: center;
+  padding: 6px 8px;
+  border: 3px solid #007bff;
+  background-color: white;
+  color: #007bff;
+}
+.button:hover {
+  color: white;
+  background-color: #007bff;
+}
+.arrow-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 40px;
+  border: 3px solid #007bff;
+  background-color: white;
+  cursor: pointer;
+}
+.arrow-left::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-bottom: 3px solid #007bff;
+  border-left: 3px solid #007bff;
+}
+.arrow-left:hover {
+  background-color: #007bff;
+}
+.arrow-left:hover::before {
+  border-color: white;
+}
+.arrow-left::before {
+  transform: rotate(45deg);
+}
+.arrow-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 40px;
+  border: 3px solid #007bff;
+  background-color: white;
+  cursor: pointer;
+}
+.arrow-right::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-bottom: 3px solid #007bff;
+  border-left: 3px solid #007bff;
+}
+.arrow-right:hover {
+  background-color: #007bff;
+}
+.arrow-right:hover::before {
+  border-color: white;
+}
+.arrow-right::before {
+  transform: rotate(-135deg);
+}
+#SwitchStarting {
+  display: flex;
+  align-items: center;
+}
+#SwitchStarting .item {
+  width: 30px;
+  height: 30px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+#SwitchStarting .item.selected {
+  display: flex;
+}
+#SwitchTonality {
+  display: flex;
+  align-items: center;
+}
+#SwitchTonality .part {
+  cursor: pointer;
+}
+#SwitchTonality .switch {
+  width: 40px;
+  height: 20px;
+  border-radius: 20px;
+  background-color: #007bff;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 10px;
+}
+#SwitchTonality .switch::before {
+  content: "";
+  transition: 0.2s transform;
+  display: block;
+  background-color: white;
+  border-radius: 20px;
+  width: 14px;
+  height: 14px;
+}
+#SwitchTonality .switch.left::before {
+  transform: translateX(3px);
+}
+#SwitchTonality .switch.right::before {
+  transform: translateX(23px);
+}
+#Book {
+  width: 100%;
+}
+#Book > .book-head {
+  display: flex;
+  border-bottom: 1px solid grey;
+  padding: 10px 5px 0 5px;
+}
+#Book > .book-head > .book-part {
+  transform: translateY(1px);
+  margin-left: 15px;
+  border-radius: 3px 3px 0 0;
+  border: 1px solid grey;
+  cursor: pointer;
+  padding: 4px 8px;
+}
+#Book > .book-head > .book-part.selected {
+  color: white;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+}
+#Book > .book-body {
+  width: 100%;
+}
+#Book > .book-body > .book-part {
+  display: none;
+  flex-direction: column;
+  align-items: start;
+}
+#Book > .book-body > .book-part.selected {
+  display: flex;
+}
+#PianoScaleViewer,
+#PianoChordViewer,
+#PianoScaleFinder {
+  display: flex;
+}
+#PianoScaleViewer .octave,
+#PianoChordViewer .octave,
+#PianoScaleFinder .octave {
+  display: flex;
+  margin-right: 2px;
+  flex-direction: column;
+}
+#PianoScaleViewer .octave .black,
+#PianoChordViewer .octave .black,
+#PianoScaleFinder .octave .black {
+  width: 300px;
+  height: calc((160px * 3) / 5);
+  display: flex;
+  position: absolute;
+}
+#PianoScaleViewer .octave .black > div,
+#PianoChordViewer .octave .black > div,
+#PianoScaleFinder .octave .black > div {
+  display: flex;
+  justify-content: space-evenly;
+}
+#PianoScaleViewer .octave .black > div:nth-child(1),
+#PianoChordViewer .octave .black > div:nth-child(1),
+#PianoScaleFinder .octave .black > div:nth-child(1) {
+  width: calc((100% / 7) * 3);
+}
+#PianoScaleViewer .octave .black > div:nth-child(1) .key,
+#PianoChordViewer .octave .black > div:nth-child(1) .key,
+#PianoScaleFinder .octave .black > div:nth-child(1) .key {
+  width: calc(100% / 5);
+}
+#PianoScaleViewer .octave .black > div:nth-child(2),
+#PianoChordViewer .octave .black > div:nth-child(2),
+#PianoScaleFinder .octave .black > div:nth-child(2) {
+  width: calc((100% / 7) * 4);
+}
+#PianoScaleViewer .octave .black > div:nth-child(2) .key,
+#PianoChordViewer .octave .black > div:nth-child(2) .key,
+#PianoScaleFinder .octave .black > div:nth-child(2) .key {
+  width: calc(100% / 7);
+}
+#PianoScaleViewer .octave .black > div .key,
+#PianoChordViewer .octave .black > div .key,
+#PianoScaleFinder .octave .black > div .key {
+  background-color: black;
+  color: white;
+  font-size: 10px;
+}
+#PianoScaleViewer .octave .black > div .key:active,
+#PianoChordViewer .octave .black > div .key:active,
+#PianoScaleFinder .octave .black > div .key:active {
+  background-color: #565656;
+}
+#PianoScaleViewer .octave .white,
+#PianoChordViewer .octave .white,
+#PianoScaleFinder .octave .white {
+  width: 300px;
+  height: 160px;
+  display: flex;
+  justify-content: space-between;
+}
+#PianoScaleViewer .octave .white .key,
+#PianoChordViewer .octave .white .key,
+#PianoScaleFinder .octave .white .key {
+  width: calc((100% / 7) - 2px);
+  background-color: white;
+  color: black;
+  font-size: 15px;
+}
+#PianoScaleViewer .octave .white .key:active,
+#PianoChordViewer .octave .white .key:active,
+#PianoScaleFinder .octave .white .key:active {
+  background-color: lightgrey;
+}
+#PianoScaleViewer .octave .key,
+#PianoChordViewer .octave .key,
+#PianoScaleFinder .octave .key {
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  cursor: pointer;
+}
+#PianoScaleViewer .octave .key.selected[selection='chord'],
+#PianoChordViewer .octave .key.selected[selection='chord'],
+#PianoScaleFinder .octave .key.selected[selection='chord'] {
+  background-color: #8c3acf;
+  color: white;
+}
+#PianoScaleViewer .octave .key.selected[selection='chord']:active,
+#PianoChordViewer .octave .key.selected[selection='chord']:active,
+#PianoScaleFinder .octave .key.selected[selection='chord']:active {
+  background-color: #5c2887;
+}
+#PianoScaleViewer .octave .key.selected[selection='scale'],
+#PianoChordViewer .octave .key.selected[selection='scale'],
+#PianoScaleFinder .octave .key.selected[selection='scale'] {
+  background-color: #dc3545;
+  color: white;
+}
+#PianoScaleViewer .octave .key.selected[selection='scale']:active,
+#PianoChordViewer .octave .key.selected[selection='scale']:active,
+#PianoScaleFinder .octave .key.selected[selection='scale']:active {
+  background-color: #a8323d;
+}
+#PianoScaleViewer .octave .key.selected[selection='find'],
+#PianoChordViewer .octave .key.selected[selection='find'],
+#PianoScaleFinder .octave .key.selected[selection='find'] {
+  background-color: #007bff;
+  color: white;
+}
+#PianoScaleViewer .octave .key.selected[selection='find']:active,
+#PianoChordViewer .octave .key.selected[selection='find']:active,
+#PianoScaleFinder .octave .key.selected[selection='find']:active {
+  background-color: #0762c4;
 }
 .piano {
   display: flex;
@@ -71,7 +387,7 @@ p {
 }
 .piano .octave .key {
   border-radius: 0 0 3px 3px;
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
   display: flex;
   align-items: end;
   justify-content: center;
@@ -90,4 +406,11 @@ p {
 }
 .piano .octave .key.selected[selection='scale']:active {
   background-color: #a8323d;
+}
+.piano .octave .key.selected[selection='find'] {
+  background-color: #007bff;
+  color: white;
+}
+.piano .octave .key.selected[selection='find']:active {
+  background-color: #0762c4;
 }

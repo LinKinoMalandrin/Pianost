@@ -27,7 +27,9 @@ class Chord {
 	toString() {
 		return this.key.keyString() + "" + this.more + " beginning at "+this.key.toString();
 	}
-
+	getChordString() {
+		return this.key.keyString()+""+this.more;
+	}
 	getKeys() {
 		return this.array.map(x => x[0]);
 	}
@@ -41,5 +43,15 @@ class Chord {
 	stop() {
 		for (let key of this.array)
 			key[0].stop();
+	}
+	lessOctave() {
+		for (let key of this.array) {
+			key[0].lessOctave();
+		}
+	}
+	moreOctave() {
+		for (let key of this.array) {
+			key[0].upperOctave();
+		}
 	}
 }

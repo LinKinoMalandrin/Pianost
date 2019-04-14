@@ -8,20 +8,78 @@
 </head>
 <body>
 
-<div id="PIANOTEST" class="piano">
-	
+<div id="Book">
+	<div class="book-head">
+		<div class="book-part">Scale viewer</div>
+		<div class="book-part">Chord viewer</div>
+		<div class="book-part">Scale finder</div>
+		<div class="book-part">Chord finder</div>
+		<div class="book-part">Synth</div>
+	</div>
+	<div class="book-body">
+		<div class="book-part">
+			<!-- Scale viewer -->
+			<div class="container-column-center">
+				<div id="SwitchTonality">
+					<div class="part">Major</div>
+					<div class="switch"></div>
+					<div class="part">Minor</div>
+				</div>
+				<div id="PianoScaleViewer">
+					
+				</div>
+				<div class="button" id="ShowScalesChords">See chords</div>
+			</div>
+		</div>
+		<div class="book-part">
+			<!-- Chord viewer -->
+			<div id="ChordList">
+				<div class="head"></div>
+				<div class="body"></div>
+			</div>
+			<div id="PianoChordViewer">
+				<!-- Js auto-generated -->
+			</div>
+			<div id="PlayChord" class="button">Play chord</div>
+			<div id="SwitchStarting">
+				<div class="arrow-left" id='SwitchStartingLeft'></div>
+				<div class="item">1<span class="more">st</span></div>
+				<div class="item">2<span class="more">nd</span></div>
+				<div class="item">3<span class="more">rd</span></div>
+				<div class="item selected">4<span class="more">th</span></div>
+				<div class="item">5<span class="more">th</span></div>
+				<div class="item">6<span class="more">th</span></div>
+				<div class="item">7<span class="more">th</span></div>
+				<div class="arrow-right" id='SwitchStartingRight'></div>
+			</div> 
+		</div>
+		<div class="book-part">
+			<!-- Scale finder -->
+			<div id="PianoScaleFinder">
+				<!-- Js auto-generated -->
+			</div>
+			<div id="ScalesAvailable">
+				<div class="head">Scales Available</div>
+				<div class="body">
+					
+				</div>
+			</div>
+		</div>
+		<div class="book-part">
+			<!-- Chord finder -->
+		</div>
+		<div class="book-part">
+			<!-- Synth -->
+		</div>
+	</div>
 </div>
 
-<div id="SHOWCHORD">Montrer Am4</div>
-<div id="PLAYCHORD">Jouer l'accord</div>
-<div id="CLEARPIANO">Clear</div>
-<div id="SHOWSCALE">Montrer la gamme de C Majeur</div>
-
 </body>
-<script type="text/javascript" src="Key.js"></script>
-<script type="text/javascript" src="Chord.js"></script>
-<script type="text/javascript" src="Scale.js"></script>
-<script type="text/javascript" src="Piano.js"></script>
-<script type="text/javascript" src="Octave.js"></script>
-<script type="text/javascript" src="Pianost.js"></script>
+<script type="text/javascript" src="Pianost-js/Const.js"></script>
+<script type="text/javascript" src="Pianost-js/Key.js"></script>
+<script type="text/javascript" src="Pianost-js/Chord.js"></script>
+<script type="text/javascript" src="Pianost-js/Scale.js"></script>
+<script type="text/javascript" src="Pianost-js/Piano.js"></script>
+<script type="text/javascript" src="Pianost-js/Octave.js"></script>
+<script type="text/javascript" src="main.js"></script>
 </html>
