@@ -46,6 +46,19 @@ body { margin:0; padding:0;}
 
 * { font-family:'REGULAR'; }
 
+span, p, h1 {
+	&.bold {
+		font-family:'BOLD';
+	}
+}
+
+.head-style {
+	border-bottom:1px solid @grey;
+	font-family:'BOLD';
+	margin-bottom:5px;
+	padding-bottom:5px;
+}
+
 .shadow-l() {
 	box-shadow:0 1px 3px 1px rgba(0, 0, 0, 0.2);
 }
@@ -162,10 +175,12 @@ body { margin:0; padding:0;}
 	}
 	& >.book-body {
 		width:100%;
+		overflow:hidden;
 		& >.book-part {
 			display:none;
 			flex-direction:column;
 			align-items:start;
+			animation:showPart 0.3s;
 			&.selected {
 				display:flex;
 			}
@@ -217,6 +232,7 @@ body { margin:0; padding:0;}
 		color:white;
 		background-color:@blue;
 	}
+	&:active { background-color:@bluedark; border-color:@bluedark; }
 }
 
 .arrow() {
@@ -242,6 +258,10 @@ body { margin:0; padding:0;}
 		&::before {
 			border-color:white;
 		}
+	}
+	&:active { 
+		background-color:@bluedark;
+		border-color:@bluedark;
 	}
 }
 .arrow-left {
@@ -278,10 +298,157 @@ body { margin:0; padding:0;}
 	.book();
 }
 
-#PianoScaleViewer, #PianoChordViewer, #PianoScaleFinder {
+#ScaleViewerContainer {
+	.container-column-center();
+	& > * {
+		margin-top:30px;
+	}
+}
+
+#ChordViewerContainer {
+	.container-column-center();
+	.row {
+		padding-top:20px;
+		align-items:center;
+		display:flex;
+		& > *:nth-child(n + 2) {
+			margin-left:20px;
+		}
+		#ChordList {
+			.head { 
+				font-family:'BOLD'; 
+				border-bottom:1px solid @grey;
+				margin-bottom:5px;
+				padding-bottom:5px;
+			}
+			.item {
+				cursor:pointer;
+				padding:4px 11px;
+				border-radius:20px;
+				&:hover { background-color:@purple; color:white; }
+				&:active { background-color:@purpledark; }
+			}
+		}
+	}
+	.column {
+		& > * {
+			margin-top:20px;
+		}
+		display:flex;
+		flex-direction:column;
+		align-items:center;
+		#SwitchStarting .item { margin:0 20px; }
+	}
+}
+
+#ScaleFinderContainer {
+	.container-column-center();
+	& > * {
+		margin-top:30px;
+	}
+	#ScalesAvailable {
+		width:220px;
+		.head {
+			.head-style();
+			text-align:center;
+		}
+		.body {
+			display:flex;
+			.minor, .major { 
+				display:flex;
+				flex-direction:column;
+				align-items:center;
+				width:50%; 
+				.item {
+					cursor:pointer;
+					width:calc(100% - 30px);
+					padding:4px 11px;
+					border-radius:20px;
+					&:hover { background-color:@purple; color:white; }
+					&:active { background-color:@purpledark; }
+				}
+			}
+			.major {
+				border-right:1px solid @grey;
+			}
+		}
+	}
+}
+
+#ToolsContainer {
+	.circle {
+		@size:40px;
+		@space:10px;
+		@totalw:@size * 5 + @space * 6;
+		@totalh:@size * 5 + @space * 6;
+		width:@size * 5 + @space * 6;
+		height:@size * 5 + @space * 6;
+		.note() {
+			width:@size;
+			height:@size;
+			display:flex;
+			justify-content:center;
+			align-items:center;
+			position:absolute;
+			color:black;
+		}
+		.note-1  {  .note(); transform:translate(@size * 1 + @space * 2, @size * 0 + @space * 1); }
+		.note-2  {  .note(); transform:translate(@size * 2 + @space * 3, @size * 0 + @space * 1); }
+		.note-3  {  .note(); transform:translate(@size * 3 + @space * 4, @size * 0 + @space * 1); }
+		.note-4  {  .note(); transform:translate(@size * 4 + @space * 5, @size * 1 + @space * 2); }
+		.note-5  {  .note(); transform:translate(@size * 4 + @space * 5, @size * 2 + @space * 3); }
+		.note-6  {  .note(); transform:translate(@size * 4 + @space * 5, @size * 3 + @space * 4); }
+		.note-7  {  .note(); transform:translate(@size * 3 + @space * 4, @size * 4 + @space * 5); }
+		.note-8  {  .note(); transform:translate(@size * 2 + @space * 3, @size * 4 + @space * 5); }
+		.note-9  {  .note(); transform:translate(@size * 1 + @space * 2, @size * 4 + @space * 5); }
+		.note-10  { .note(); transform:translate(@size * 0 + @space * 1, @size * 3 + @space * 4); }
+		.note-11  { .note(); transform:translate(@size * 0 + @space * 1, @size * 2 + @space * 3); }
+		.note-12  { .note(); transform:translate(@size * 0 + @space * 1, @size * 1 + @space * 2); }
+	}
+	.table {
+		margin-top:20px;
+		display:flex;
+		.head { .head-style(); }
+		.left { width:150px; border-right:1px solid @grey;}
+		.right { 
+			width:150px;
+		}
+		.right, .left { & > * { padding-left:15px; } }
+	}
+}
+
+#PianoScaleViewer, #PianoChordViewer, #PianoScaleFinder, #PianoChordFinder {
 	.piano-behavior(300px, 160px, 10px, 15px);
 }
 
 .piano {
 	.piano-behavior(300px, 160px, 10px, 15px);
+}
+
+#ChordFinderContainer {
+	.container-column-center();
+	& > * {margin-top:20px;}
+	#ChordsFound {
+		display:flex;
+		.col {
+			.head { .head-style(); text-align: center; }
+			width:200px;
+			.body {
+				.item {
+					text-align:center;
+				}
+			}
+			&:nth-child(n + 2) { border-left:1px solid @grey; }
+		}
+	}
+}
+
+@keyframes showPart {
+	from {
+		opacity:0;
+		transform:translateX(200px);
+	} to {
+		opacity:1;
+		transform:translateX(0);
+	}
 }
