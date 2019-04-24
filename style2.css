@@ -1,0 +1,266 @@
+p {
+  margin: 0;
+}
+@font-face {
+  font-family: 'REGULAR';
+  src: url("Poppins-Regular.ttf");
+}
+@font-face {
+  font-family: 'BOLD';
+  src: url("Poppins-Bold.ttf");
+}
+@font-face {
+  font-family: 'LOGO';
+  src: url("SocialType.ttf");
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+* {
+  font-family: 'REGULAR';
+}
+.container-row-center {
+  display: flex;
+  justify-content: center;
+}
+.container-column-center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.button {
+  display: flex;
+  border-radius: 3px;
+  cursor: pointer;
+  align-items: center;
+  padding: 6px 8px;
+  border: 3px solid #007bff;
+  background-color: white;
+  color: #007bff;
+}
+.button:hover {
+  color: white;
+  background-color: #007bff;
+}
+.arrow-left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 40px;
+  border: 3px solid #007bff;
+  background-color: white;
+  cursor: pointer;
+}
+.arrow-left::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-bottom: 3px solid #007bff;
+  border-left: 3px solid #007bff;
+}
+.arrow-left:hover {
+  background-color: #007bff;
+}
+.arrow-left:hover::before {
+  border-color: white;
+}
+.arrow-left::before {
+  transform: rotate(45deg);
+}
+.arrow-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 40px;
+  border: 3px solid #007bff;
+  background-color: white;
+  cursor: pointer;
+}
+.arrow-right::before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  border-bottom: 3px solid #007bff;
+  border-left: 3px solid #007bff;
+}
+.arrow-right:hover {
+  background-color: #007bff;
+}
+.arrow-right:hover::before {
+  border-color: white;
+}
+.arrow-right::before {
+  transform: rotate(-135deg);
+}
+#PianoMaster {
+  display: flex;
+}
+#PianoMaster .octave {
+  display: flex;
+  margin-right: 2px;
+  flex-direction: column;
+}
+#PianoMaster .octave .black {
+  width: 300px;
+  height: calc((160px * 3) / 5);
+  display: flex;
+  position: absolute;
+}
+#PianoMaster .octave .black > div {
+  display: flex;
+  justify-content: space-evenly;
+}
+#PianoMaster .octave .black > div:nth-child(1) {
+  width: calc((100% / 7) * 3);
+}
+#PianoMaster .octave .black > div:nth-child(1) .key {
+  width: calc(100% / 5);
+}
+#PianoMaster .octave .black > div:nth-child(2) {
+  width: calc((100% / 7) * 4);
+}
+#PianoMaster .octave .black > div:nth-child(2) .key {
+  width: calc(100% / 7);
+}
+#PianoMaster .octave .black > div .key {
+  background-color: black;
+  color: white;
+  font-size: 10px;
+}
+#PianoMaster .octave .black > div .key:active {
+  background-color: #565656;
+}
+#PianoMaster .octave .white {
+  width: 300px;
+  height: 160px;
+  display: flex;
+  justify-content: space-between;
+}
+#PianoMaster .octave .white .key {
+  width: calc((100% / 7) - 2px);
+  background-color: white;
+  color: black;
+  font-size: 15px;
+}
+#PianoMaster .octave .white .key:active {
+  background-color: lightgrey;
+}
+#PianoMaster .octave .key {
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  cursor: pointer;
+}
+#PianoMaster .octave .key.selected[selection='chord'] {
+  background-color: #8c3acf;
+  color: white;
+}
+#PianoMaster .octave .key.selected[selection='chord']:active {
+  background-color: #5c2887;
+}
+#PianoMaster .octave .key.selected[selection='scale'] {
+  background-color: #dc3545;
+  color: white;
+}
+#PianoMaster .octave .key.selected[selection='scale']:active {
+  background-color: #a8323d;
+}
+#PianoMaster .octave .key.selected[selection='find'] {
+  background-color: #007bff;
+  color: white;
+}
+#PianoMaster .octave .key.selected[selection='find']:active {
+  background-color: #0762c4;
+}
+.piano {
+  display: flex;
+}
+.piano .octave {
+  display: flex;
+  margin-right: 2px;
+  flex-direction: column;
+}
+.piano .octave .black {
+  width: 300px;
+  height: calc((160px * 3) / 5);
+  display: flex;
+  position: absolute;
+}
+.piano .octave .black > div {
+  display: flex;
+  justify-content: space-evenly;
+}
+.piano .octave .black > div:nth-child(1) {
+  width: calc((100% / 7) * 3);
+}
+.piano .octave .black > div:nth-child(1) .key {
+  width: calc(100% / 5);
+}
+.piano .octave .black > div:nth-child(2) {
+  width: calc((100% / 7) * 4);
+}
+.piano .octave .black > div:nth-child(2) .key {
+  width: calc(100% / 7);
+}
+.piano .octave .black > div .key {
+  background-color: black;
+  color: white;
+  font-size: 10px;
+}
+.piano .octave .black > div .key:active {
+  background-color: #565656;
+}
+.piano .octave .white {
+  width: 300px;
+  height: 160px;
+  display: flex;
+  justify-content: space-between;
+}
+.piano .octave .white .key {
+  width: calc((100% / 7) - 2px);
+  background-color: white;
+  color: black;
+  font-size: 15px;
+}
+.piano .octave .white .key:active {
+  background-color: lightgrey;
+}
+.piano .octave .key {
+  border-radius: 0 0 3px 3px;
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  cursor: pointer;
+}
+.piano .octave .key.selected[selection='chord'] {
+  background-color: #8c3acf;
+  color: white;
+}
+.piano .octave .key.selected[selection='chord']:active {
+  background-color: #5c2887;
+}
+.piano .octave .key.selected[selection='scale'] {
+  background-color: #dc3545;
+  color: white;
+}
+.piano .octave .key.selected[selection='scale']:active {
+  background-color: #a8323d;
+}
+.piano .octave .key.selected[selection='find'] {
+  background-color: #007bff;
+  color: white;
+}
+.piano .octave .key.selected[selection='find']:active {
+  background-color: #0762c4;
+}

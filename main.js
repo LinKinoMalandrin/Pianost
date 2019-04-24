@@ -277,10 +277,6 @@ class ScaleFinder {
 
 setup();
 
-function getId(id) {
-	return document.getElementById(id);
-}
-
 function setup() {
 	BOOK = new Book(getId('Book'));
 	SCALEVIEWER = new ScaleViewer();

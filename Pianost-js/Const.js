@@ -16,3 +16,10 @@ function addMouseUpDown(element, playable) {
 		playable.stop();
 	});
 }
+
+function getId(id) {
+	return document.getElementById(id);
+}
+function getClass(e, class_n) {
+	return document.getElementsByClassName(class_n)[0];
+}
