@@ -14,12 +14,13 @@
 		<div class="book-part">Chord viewer</div>
 		<div class="book-part">Scale finder</div>
 		<div class="book-part">Chord finder</div>
+		<div class="book-part">Tools</div>
 		<div class="book-part">Synth</div>
 	</div>
 	<div class="book-body">
 		<div class="book-part">
 			<!-- Scale viewer -->
-			<div class="container-column-center">
+			<div id="ScaleViewerContainer">
 				<div id="SwitchTonality">
 					<div class="part">Major</div>
 					<div class="switch"></div>
@@ -28,45 +29,130 @@
 				<div id="PianoScaleViewer">
 					
 				</div>
+				<p id="ScaleViewerName" class='bold'></p>
 				<div class="button" id="ShowScalesChords">See chords</div>
 			</div>
 		</div>
 		<div class="book-part">
 			<!-- Chord viewer -->
-			<div id="ChordList">
-				<div class="head"></div>
-				<div class="body"></div>
+			<div id="ChordViewerContainer">
+				<div class="row">
+					<div id="ChordList">
+						<div class="head"></div>
+						<div class="body"></div>
+					</div>
+					<div id="PianoChordViewer">
+						<!-- Js auto-generated -->
+					</div>
+				</div>
+				<div class='column'>
+					<div id="PlayChord" class="button">Play chord</div>
+					<p class="bold">Starting note :</p>
+					<div id="SwitchStarting">
+						<div class="arrow-left" id='SwitchStartingLeft'></div>
+						<div class="item">1<span class="more">st</span></div>
+						<div class="item">2<span class="more">nd</span></div>
+						<div class="item">3<span class="more">rd</span></div>
+						<div class="item selected">4<span class="more">th</span></div>
+						<div class="item">5<span class="more">th</span></div>
+						<div class="item">6<span class="more">th</span></div>
+						<div class="item">7<span class="more">th</span></div>
+						<div class="arrow-right" id='SwitchStartingRight'></div>
+					</div>
+				</div>
 			</div>
-			<div id="PianoChordViewer">
-				<!-- Js auto-generated -->
-			</div>
-			<div id="PlayChord" class="button">Play chord</div>
-			<div id="SwitchStarting">
-				<div class="arrow-left" id='SwitchStartingLeft'></div>
-				<div class="item">1<span class="more">st</span></div>
-				<div class="item">2<span class="more">nd</span></div>
-				<div class="item">3<span class="more">rd</span></div>
-				<div class="item selected">4<span class="more">th</span></div>
-				<div class="item">5<span class="more">th</span></div>
-				<div class="item">6<span class="more">th</span></div>
-				<div class="item">7<span class="more">th</span></div>
-				<div class="arrow-right" id='SwitchStartingRight'></div>
-			</div> 
 		</div>
 		<div class="book-part">
 			<!-- Scale finder -->
-			<div id="PianoScaleFinder">
-				<!-- Js auto-generated -->
-			</div>
-			<div id="ScalesAvailable">
-				<div class="head">Scales Available</div>
-				<div class="body">
-					
+			<div id="ScaleFinderContainer">
+				<div id="PianoScaleFinder">
+					<!-- Js auto-generated -->
+				</div>
+				<div class="button" id="ClearScaleFinder">Clear</div>
+				<div id="ScalesAvailable">
+					<div class="head">Scales Available</div>
+					<div class="body">
+						<div class="major"></div>
+						<div class="minor"></div>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="book-part">
 			<!-- Chord finder -->
+			<div id="ChordFinderContainer">
+				<div id="PianoChordFinder">
+					
+				</div>
+				<div id="ChordsFound">
+					<div class="col">
+						<div class="head">All keys matching</div>
+						<div class="body zero"></div>
+					</div>
+					<div class="col">
+						<div class="head">One missing</div>
+						<div class="body one"></div>
+					</div>
+					<div class="col">
+						<div class="head">Two missing</div>
+						<div class="body two"></div>
+					</div>
+				</div>
+				<div class="button" id="PlayChordFind">Play chord</div>
+			</div>
+		</div>
+		<div class="book-part">
+			<!-- Tools -->
+			<div id="ToolsContainer">
+				<p class="bold">Intervals</p>
+				<div class="table">
+					<div class="left">
+						<div class="head">Name</div>
+						<div class="item">Minor Second</div>
+						<div class="item">Second</div>
+						<div class="item">Minor Third</div>
+						<div class="item">Major Third</div>
+						<div class="item">Fourth</div>
+						<div class="item">Bemol Fifth</div>
+						<div class="item">Fifth</div>
+						<div class="item">Minor Sixth</div>
+						<div class="item">Sixth</div>
+						<div class="item">Minor Seventh</div>
+						<div class="item">Seventh</div>
+						<div class="item">Octave</div>
+					</div>
+					<div class="right">
+						<div class="head">Distance</div>
+						<div class="item">1/2 Ton</div>
+						<div class="item">1 Ton</div>
+						<div class="item">1 Ton + 1/2 Ton</div>
+						<div class="item">2 Tons</div>
+						<div class="item">2 Tons + 1/2 Ton</div>
+						<div class="item">3 Tons</div>
+						<div class="item">3 Tons + 1/2 Ton</div>
+						<div class="item">4 Tons</div>
+						<div class="item">4 Tons + 1/2 Ton</div>
+						<div class="item">5 Tons</div>
+						<div class="item">5 Tons + 1/2 Ton</div>
+						<div class="item">6 Tons</div>
+					</div>
+				</div>
+				<p class="bold">Fifth circle</p>
+				<div class="circle">
+					<div class="note-1">C</div>
+					<div class="note-2">G</div>
+					<div class="note-3">D</div>
+					<div class="note-4">E</div>
+					<div class="note-5">A</div>
+					<div class="note-6">B</div>
+					<div class="note-7">F#</div>
+					<div class="note-8">C#</div>
+					<div class="note-9">G#</div>
+					<div class="note-10">D#</div>
+					<div class="note-11">A#</div>
+					<div class="note-12">F</div>
+				</div>
+			</div>
 		</div>
 		<div class="book-part">
 			<!-- Synth -->
