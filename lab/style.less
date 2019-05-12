@@ -1,0 +1,85 @@
+@import '../../Racss/style.less';
+
+* {
+	font-family:Courier New;
+	font-weight:700;
+}
+body{
+	padding:0;
+	margin: 0;
+}
+
+@filters_h:300px;
+#filters {
+	height:@filters_h;
+}
+#keys {
+	display:flex;
+	padding:15px;
+	background-color:black;
+	& > * {
+		padding:5px 8px;
+		border:3px solid white;
+		border-radius:3px;
+		color:white;
+		margin-right:10px;
+		cursor:pointer;
+		width:45px;
+		text-align:center;
+	}
+}
+
+#chords {
+	display:flex;
+	padding:15px;
+	background-color:grey;
+	& > * {
+		padding:5px 8px;
+		border:3px solid white;
+		border-radius:3px;
+		color:white;
+		margin-right:10px;
+		cursor:pointer;
+		width:80px;
+		text-align:center;
+	}
+}
+
+
+#rack {
+	position:fixed;
+	bottom:0;
+	width:100vw;
+	max-height:calc(100vh - @filters_h);
+	overflow-y:scroll;
+	display:flex;
+	#rack-keys {
+		width:60px;
+		.black { color:white; background-color:black; }
+		.white { color:black; background-color:lightgrey; }
+		.black.selected, .white.selected {
+			background-color:@blue;
+			color:white;
+			box-shadow:0 1px 3px 1px rgba(0, 0, 0, .4);
+		}
+		font-size:10px;
+		& > * {
+			padding:2px 5px;
+		}
+	}
+	#rack-racks {
+		width:calc(100vw - 60px);
+		.black { color:white; background-color:lighten(@black, 20%); }
+		.white { color:black; background-color:lighten(@black, 30%); }
+		.black, .white {
+			height:24px;
+			& > .note {
+				background-color:@blue;
+				height:100%;
+				width:100px;
+				padding:2px 5px;
+				color:white;
+			}
+		}
+	}
+}

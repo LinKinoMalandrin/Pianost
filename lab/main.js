@@ -88,6 +88,18 @@ const Color = {
 	}
 };
 
+const Scales = {
+	Major:{
+		keys:[0, 2, 4, 5, 7, 9, 11]
+	},
+	Minor:{
+		keys:[0, 2, 3, 5, 7, 8, 10]
+	},
+	Blues:{
+		keys:[0, 3, 5, 6, 7, 10]
+	}
+}
+
 const KEYS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
 
 function createKey(value) {
@@ -146,30 +158,10 @@ const Key = function(key) {
 	}
 
 	it.getRelatives = function(color) {
-		if (color.name === Color.Major.name) {
-			return [
-				new createKey(it.value),
-				new createKey(it.value + 2),
-				new createKey(it.value + 4),
-				new createKey(it.value + 5),
-				new createKey(it.value + 7),
-				new createKey(it.value + 9),
-				new createKey(it.value + 11)
-			];
-		} else if (color.name === Color.Minor.name) {
-			return [
-				new createKey(it.value),
-				new createKey(it.value + 2),
-				new createKey(it.value + 3),
-				new createKey(it.value + 5),
-				new createKey(it.value + 7),
-				new createKey(it.value + 8),
-				new createKey(it.value + 10)
-			];
-		} else {
-			console.error('Bad color for Chords : ' + color.name);
-			return {};
-		}
+		list = [];
+		for (let m of color.keys)
+			list.push(createKey(it.value + m));
+		return list;
 	}
 
 	build();
@@ -214,7 +206,7 @@ const Scale = function(scale) {
 	let it = {};
 
 	function build() {
-		addIfNot(scale, { color:Color.Major, key:new Key('C')});
+		addIfNot(scale, { color:Scales.Major, key:new Key('C')});
 		addIfNot(it, scale);
 
 		it.setChords();
