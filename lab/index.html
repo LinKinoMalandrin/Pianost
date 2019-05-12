@@ -3,12 +3,43 @@
 <head>
 	<title>Test</title>
 	<meta charset="utf-8">
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
+	<script type="text/javascript" src="Tone.js"></script>
 	<script src='../../Jison/Creator.js'></script>
+	<script src='../../Jison/Jison.js'></script>
+	<style type="text/css">
+		* {
+			font-family:Courier New;
+			font-style:bold;
+		}
+		#keys, #chords, #chord {
+			padding:20px;
+			display:flex;
+		}
+		#keys > *, #chords > *, #chord > *{
+			padding:10px 15px;
+			border:3px solid white;
+			margin-right:20px;
+			color:white;
+			border-radius:5px;
+			cursor:pointer;
+		}
+		#keys {
+			background-color:black;
+		}
+		#chords {
+			background-color:grey;
+		}
+		#chord > *{
+			color:black;
+			font-weight:700;
+		}
+	</style>
 </head>
 <body>
 	<div id="keys"></div>
 	<div id="chords"></div>
+	<div id="chord"></div>
 </body>
 <script type="text/javascript" src='main.js'></script>
+<script type="text/javascript" src='dynamic.js'></script>
 </html>

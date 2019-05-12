@@ -107,22 +107,15 @@ function getAllChords(key) {
 	return list;
 }
 
-function merge(o, e) {
-	if (!e) e = {};
-	for (let entry in e)
-		o[entry] = e[entry];
-	return o;
-}
-
 const Key = function(key) {
 	let it = {};
 
 	function build() {
-		key = merge({
+		addIfNot(key, {
 			string:'C',
 			octave:1
-		}, key);
-		it = merge(key, it);
+		});
+		addIfNot(it, key);
 
 		it.value = KEYS.indexOf(it.string) + (it.octave * 12);
 	}
@@ -155,23 +148,23 @@ const Key = function(key) {
 	it.getRelatives = function(color) {
 		if (color.name === Color.Major.name) {
 			return [
-				new Chord({key:createKey(it.value), more:Color.Major}),
-				new Chord({key:createKey(it.value + 2), more:Color.Minor}),
-				new Chord({key:createKey(it.value + 4), more:Color.Minor}),
-				new Chord({key:createKey(it.value + 5), more:Color.Major}),
-				new Chord({key:createKey(it.value + 7), more:Color.Major}),
-				new Chord({key:createKey(it.value + 9), more:Color.Minor}),
-				new Chord({key:createKey(it.value + 11), more:Color.Dim})
+				new createKey(it.value),
+				new createKey(it.value + 2),
+				new createKey(it.value + 4),
+				new createKey(it.value + 5),
+				new createKey(it.value + 7),
+				new createKey(it.value + 9),
+				new createKey(it.value + 11)
 			];
 		} else if (color.name === Color.Minor.name) {
 			return [
-				new Chord({key:createKey(it.value), more:Color.Minor}),
-				new Chord({key:createKey(it.value + 2), more:Color.Dim}),
-				new Chord({key:createKey(it.value + 3), more:Color.Major}),
-				new Chord({key:createKey(it.value + 5), more:Color.Minor}),
-				new Chord({key:createKey(it.value + 7), more:Color.Minor}),
-				new Chord({key:createKey(it.value + 8), more:Color.Major}),
-				new Chord({key:createKey(it.value + 10), more:Color.Major})
+				new createKey(it.value),
+				new createKey(it.value + 2),
+				new createKey(it.value + 3),
+				new createKey(it.value + 5),
+				new createKey(it.value + 7),
+				new createKey(it.value + 8),
+				new createKey(it.value + 10)
 			];
 		} else {
 			console.error('Bad color for Chords : ' + color.name);
@@ -187,11 +180,11 @@ const Chord = function(chord) {
 	let it = {};
 
 	function build() {
-		chord = merge({
+		addIfNot(chord, {
 			key:new Key({string:'C'}),
 			more:Color.Major
-		}, chord);
-		it = merge(chord, it);
+		});
+		addIfNot(it, chord);
 		it.list = it.setList();
 	}
 
@@ -221,8 +214,8 @@ const Scale = function(scale) {
 	let it = {};
 
 	function build() {
-		scale = merge({ color:Color.Major, key:new Key('C')}, scale);
-		it = merge(scale, it);
+		addIfNot(scale, { color:Color.Major, key:new Key('C')});
+		addIfNot(it, scale);
 
 		it.setChords();
 	}
@@ -246,7 +239,7 @@ const Scale = function(scale) {
 		for (let key of chord.list) {
 			let found = false;
 			for (let reference of it.list) {
-				if (reference.key.corresponds(key)) {
+				if (reference.corresponds(key)) {
 					found = true;
 					break;
 				}
@@ -259,33 +252,3 @@ const Scale = function(scale) {
 	build();
 	return it;
 }
-
-function main() {
-	let scale = new Scale({
-		color:Color.Minor,
-		key:new Key({string:'A', octave:3})
-	});
-	for (let chord of scale.list)
-		Creator.createElement({
-			parentNode:document.getElementById('keys'),
-			content:chord.key.string,
-			click:function(e) {
-				printChords(chord.key, scale);
-			}
-		});
-}
-
-function printChords(key, scale) {
-	let e = document.getElementById('chords');
-	e.innerHTML = '';
-	for (let chord of scale.getChordsStartingWith(key))
-		Creator.createElement({
-			parentNode:e,
-			content:chord.toString(),
-			click:function(e) {
-				SYNTH.triggerAttackRelease(chord.getKeysArray(), "4n");
-			}
-		});
-}
-
-main();
