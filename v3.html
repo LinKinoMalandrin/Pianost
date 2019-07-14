@@ -2,18 +2,57 @@
 <html>
 <head>
 	<title>Page</title>
-	<link rel="stylesheet" type="text/css" href="styletest.css">
+	<link rel="stylesheet" type="text/css" href="style-v3.css">
 	<meta charset="utf-8">
-	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tone/13.0.1/Tone.min.js"></script>
+	<script type="text/javascript" src="Pianost-js/Const.js"></script>
+	<script type="text/javascript" src="Pianost-js/Key.js"></script>
+	<script type="text/javascript" src="Pianost-js/Chord.js"></script>
+	<script type="text/javascript" src="Pianost-js/Scale.js"></script>
+	<script type="text/javascript" src="Pianost-js/Piano.js"></script>
+	<script type="text/javascript" src="Pianost-js/Octave.js"></script>
+	<script type="text/javascript" src="../Jison/Global.js"></script>
+	<script type="text/javascript" src="main-v3.js"></script> -->
 </head>
 <body>
-<div id="PianoMaster"></div>
+<div id="full">
+	<div id="parameters">
+		<div id="selection">
+			<div class="row-c-l split">
+				<p>Gamme</p>
+				<div id="select-scale" class="horizontal-select">C</div>
+			</div>
+			<div class="row-c-l split">
+				<p>Tonalité</p>
+				<div id="select-tonality" class="horizontal-select">Major</div>
+			</div>
+		</div>
+		<div id="allowed">
+			<div id="keys">
+				<div class="key">C</div>
+				<div class="key">D</div>
+				<div class="key">E</div>
+				<div class="key">F</div>
+				<div class="key">G</div>
+				<div class="key">A</div>
+				<div class="key">B</div>
+			</div>
+			<div id="chords">
+				<div class="chord">Am</div>
+				<div class="chord">D<span class='diese'>#</span>dim</div>
+				<div class="chord">C</div>
+				<div class="chord">Bm7</div>
+				<div class="chord">GMm7</div>
+				<div class="chord">F<span class='diese'>#</span>M</div>
+			</div>
+		</div>
+		<div id="more">
+			
+		</div>
+	</div>
+	<div id="rack">
+		
+	</div>
+</div>
 </body>
-<script type="text/javascript" src="Pianost-js/Const.js"></script>
-<script type="text/javascript" src="Pianost-js/Key.js"></script>
-<script type="text/javascript" src="Pianost-js/Chord.js"></script>
-<script type="text/javascript" src="Pianost-js/Scale.js"></script>
-<script type="text/javascript" src="Pianost-js/Piano.js"></script>
-<script type="text/javascript" src="Pianost-js/Octave.js"></script>
-<script type="text/javascript" src="main.js"></script>
 </html>

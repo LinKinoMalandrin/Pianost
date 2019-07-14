@@ -1,0 +1,161 @@
+@import "../Racss/style.less";
+
+#full {
+	width:100%;
+	height:100%;
+	overflow:hidden;
+	font-family:"Courier New";
+	font-size:12px;
+}
+
+@param_height:200px;
+
+#parameters {
+	height:@param_height;
+	display:flex;
+
+	@sel_width:150px;
+	@more_width:100px;
+
+	#selection {
+		padding:10px;
+		height:100%;
+		width:@sel_width;
+		background-color:#5B5B5B;
+		& > *:nth-child(n + 2) {
+			margin-top:10px;
+		}
+		color:white;
+	}
+	#allowed {
+		height:100%;
+		width:calc(100% - @sel_width - @more_width);
+		background-color:#515050;
+		#keys {
+			height:80px;
+			width:100%;
+			overflow-x:auto;
+			display:flex;
+			padding:10px;
+			& > .key:nth-child(n + 2) {
+				margin-left:10px;
+			}
+		}
+		#chords {
+			height:80px;
+			width:100%;
+			overflow-x:auto;
+			display:flex;
+			padding:10px;
+			& > .chord:nth-child(n + 2) {
+				margin-left:10px;
+			}
+		}
+	}
+	#more {
+		height:100%;
+		width:@more_width;
+		background-color:#242424;
+	}
+}
+
+#rack {
+	height:calc(100% - @param_height);
+	background-color:#C6C6C6;
+}
+
+.horizontal-select {
+	padding:3px 7px;
+	width:50px;
+	height:25px;
+	border:1px solid white;
+	border-radius:3px;
+	position:relative;
+	z-index:1;
+	overflow:hidden;
+	cursor:s-resize;
+	.row-c-l();
+	&::before {
+		content:"";
+		display:block;
+		position:absolute;
+		top:0;
+		left:0;
+		width:50px - 2px;
+		height:2px - 2px;
+		border-radius:2px;
+		background-color:#70AFAD;
+		transform:scale(0, 0);
+		z-index:-1;
+		transition:0.1s transform;
+	}
+	&:hover::before { 
+		transform:scale(1, 1);
+	}
+}
+
+.key {
+	height:25px;
+	width:40px;
+	min-width:40px;
+	border:1px solid white;
+	border-radius:3px;
+	color:white;
+	cursor:pointer;
+	position:relative;
+	z-index:1;
+	.row-c-c();
+	&::before {
+		content:"";
+		top:0;
+		left:0;
+		border-radius:2px;
+		display:block;
+		position:absolute;
+		width:40px - 2px;
+		height:25px - 2px;
+		background-color:#B97A7A;
+		transform:scale(0, 0);
+		z-index:-1;
+		transition:0.1s transform;
+	}
+	&:hover::before {
+		transform:scale(1, 1);
+	}
+}
+
+.chord {
+	height:25px;
+	width:60px;
+	min-width:60px;
+	border:1px solid white;
+	border-radius:3px;
+	color:white;
+	cursor:pointer;
+	position:relative;
+	z-index:1;
+	.row-c-c();
+	&::before {
+		content:"";
+		top:0;
+		left:0;
+		border-radius:2px;
+		display:block;
+		position:absolute;
+		width:60px - 2px;
+		height:25px - 2px;
+		background-color:#B47AB9;
+		transform:scale(0, 0);
+		z-index:-1;
+		transition:0.1s transform;
+	}
+	&:hover::before {
+		transform:scale(1, 1);
+	}
+}
+
+span.diese {
+	display:block;
+	font-size:10px;
+	transform:translateY(-2px);
+}
