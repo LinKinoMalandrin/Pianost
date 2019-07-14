@@ -1,4 +1,8 @@
-const Keys = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+const Keys = {
+	all: ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'],
+	blacks: ['C#', 'D#', 'F#', 'G#', 'A#'],
+	whites: ['C', 'D', 'E', 'F', 'G', 'A', 'B']
+}
 
 class Key {
 
@@ -48,6 +52,3 @@ class Interval {
 class Chord {
 
 }
-
-let k = new Key();
-console.log(Chords['11']);

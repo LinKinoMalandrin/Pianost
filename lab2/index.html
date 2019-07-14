@@ -2,9 +2,68 @@
 <html>
 <head>
 	<title>Pianost</title>
-	<script type="text/javascript" src='Pianost.js'></script>
+	<style type="text/css">
+
+		body { background-color: #BDBDBD;  }
+
+		.note {
+			width:20px;
+			height:100px;
+			background-color:white;
+			border-radius:0 0 3px 3px;
+			margin-right:10px;
+			display:flex;
+			align-items:flex-end;
+			justify-content:center; 
+		}
+		.note.selected, .note.black.selected{
+			background-color:blue;
+		}
+
+		.note.black {
+			background-color:#1C1C1C;
+			height:60px;
+			color:white;
+		}
+
+		.note.black:first-child {
+			margin-left:15px;
+		}
+
+		.note.black:nth-child(3) {
+			margin-left:30px;
+		}
+
+		.blacks, .whites{
+			display:flex;
+		}
+
+		.blacks {
+			position:absolute;
+			top:0;
+			left:0;
+			width:100%;
+		}
+		#app {
+			position:relative;
+		}
+
+	</style>
 </head>
 <body>
 
+	<div id="app">
+		<div class="blacks">
+			<div class="note black" v-for="key of blacks" :class="{ selected:input.split(' ').indexOf(key) !== -1 }">{{ key }}</div>
+		</div>
+		<div class="whites">
+			<div class="note" v-for="key of whites" :class="{ selected:input.split(' ').indexOf(key) !== -1 }">{{ key }}</div>
+		</div>
+		<input type="text" v-model='input'>
+	</div>
+ 	
+	<script type="text/javascript" src='Pianost.js'></script>
+	<script type="text/javascript" src='vue.js'></script>
+	<script type="text/javascript" src='app.js'></script>
 </body>
 </html>
