@@ -10,42 +10,73 @@ body{
 }
 
 @filters_h:300px;
+
 #filters {
 	height:@filters_h;
 }
+
+.touch-behavior {
+	@width:80px;
+	@height:30px;
+
+	height:@height;
+	width: @width;
+
+	border-radius:3px;
+	color:white;
+	margin-right:10px;
+	cursor:pointer;
+	z-index:3;
+	& > p { 
+		z-index:5;
+		width:100%;
+		height:100%;
+		display:flex;
+		align-items:center;
+		justify-content:center;
+	}
+	&::before {
+		z-index:-1;
+		position:absolute;
+		height:@height;
+		width:@width;
+		content:"";
+		display:block;
+		border-radius:3px;
+		transform:scale(0, 0);
+		transform-origin:50% 50%;
+		transition:transform 0.1s;
+	}
+	&:hover {
+		&::before {
+			transform:scale(1, 1);
+		}
+	}
+}
+
+.touch {
+	.touch-behavior();
+	&::before { background-color:#5A81B6; }
+}
 #keys {
-	display:flex;
-	padding:15px;
-	background-color:black;
-	& > * {
-		padding:5px 8px;
-		border:3px solid white;
-		border-radius:3px;
-		color:white;
-		margin-right:10px;
-		cursor:pointer;
-		width:45px;
-		text-align:center;
-	}
+	background-color:#2F2F2F;
 }
-
 #chords {
-	display:flex;
-	padding:15px;
-	background-color:grey;
-	& > * {
-		padding:5px 8px;
-		border:3px solid white;
-		border-radius:3px;
-		color:white;
-		margin-right:10px;
-		cursor:pointer;
-		width:80px;
-		text-align:center;
-	}
+	background-color:#434343;
 }
 
+#starting {
 
+}
+
+.drag {
+	user-select: none;
+	.touch-behavior();
+}
+
+#parameters {
+	background-color:#111111;
+}
 #rack {
 	position:fixed;
 	bottom:0;
@@ -58,7 +89,7 @@ body{
 		.black { color:white; background-color:black; }
 		.white { color:black; background-color:lightgrey; }
 		.black.selected, .white.selected {
-			background-color:@blue;
+			background-color: @blue;
 			color:white;
 			box-shadow:0 1px 3px 1px rgba(0, 0, 0, .4);
 		}

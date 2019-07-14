@@ -1,21 +1,10 @@
-const PARAMETERS;
-const RACK;
+let PARAMETERS;
+let RACK;
 
-
-PARAMETERS = (function() {
-	function build() {
-		this.scale = new SCALE(this);
-		this.notes = new NOTES(this);
-		this.more = new MORE(this);
-	}
-
-	build();
-	return this;
-})();
 
 const SCALE = function(parameters) {
 	function build() {
-		this.tonality = 
+		this.tonality = 1;
 	}
 	build();
 	return this;
@@ -37,8 +26,21 @@ const MORE = function(parameters) {
 	return this;
 };
 
-RACK = (function() {
+PARAMETERS = (function() {
+	function build() {
+		this.scale = new SCALE(this);
+		this.notes = new NOTES(this);
+		this.more = new MORE(this);
+	}
 
+	build();
+	return this;
+})();
+
+RACK = (function() {
+	function build() {
+		
+	}
 	build();
 	return this;
 })();
@@ -55,11 +57,11 @@ function refreshList() {
 	for (let key of scale.list)
 		Creator.createElement({
 			parentNode:keys,
-			classList:['key'],
+			classList:['key', 'touch'],
 			click:function() {
 				printChords(key);
 			},
-			content:key.string
+			contains:{ tag:'p', content:key.string }
 		});
 }
 
@@ -69,7 +71,8 @@ function printChords(key) {
 	chords.innerHTML = "";
 	for (let chord of scale.getChordsStartingWith(key))
 		Creator.createElement({
-			content:chord.toString(),
+			classList:['touch'],
+			contains:{ tag:'p', content:chord.toString() },
 			parentNode:chords,
 			click:function() {
 				printKeys(chord);

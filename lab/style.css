@@ -1786,35 +1786,114 @@ body {
 #filters {
   height: 300px;
 }
-#keys {
-  display: flex;
-  padding: 15px;
-  background-color: black;
-}
-#keys > * {
-  padding: 5px 8px;
-  border: 3px solid white;
+.touch-behavior {
+  height: 30px;
+  width: 80px;
   border-radius: 3px;
   color: white;
   margin-right: 10px;
   cursor: pointer;
-  width: 45px;
-  text-align: center;
+  z-index: 3;
+}
+.touch-behavior > p {
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.touch-behavior::before {
+  z-index: -1;
+  position: absolute;
+  height: 30px;
+  width: 80px;
+  content: "";
+  display: block;
+  border-radius: 3px;
+  transform: scale(0, 0);
+  transform-origin: 50% 50%;
+  transition: transform 0.1s;
+}
+.touch-behavior:hover::before {
+  transform: scale(1, 1);
+}
+.touch {
+  height: 30px;
+  width: 80px;
+  border-radius: 3px;
+  color: white;
+  margin-right: 10px;
+  cursor: pointer;
+  z-index: 3;
+}
+.touch > p {
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.touch::before {
+  z-index: -1;
+  position: absolute;
+  height: 30px;
+  width: 80px;
+  content: "";
+  display: block;
+  border-radius: 3px;
+  transform: scale(0, 0);
+  transform-origin: 50% 50%;
+  transition: transform 0.1s;
+}
+.touch:hover::before {
+  transform: scale(1, 1);
+}
+.touch::before {
+  background-color: #5A81B6;
+}
+#keys {
+  background-color: #2F2F2F;
 }
 #chords {
-  display: flex;
-  padding: 15px;
-  background-color: grey;
+  background-color: #434343;
 }
-#chords > * {
-  padding: 5px 8px;
-  border: 3px solid white;
+.drag {
+  user-select: none;
+  height: 30px;
+  width: 80px;
   border-radius: 3px;
   color: white;
   margin-right: 10px;
   cursor: pointer;
+  z-index: 3;
+}
+.drag > p {
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.drag::before {
+  z-index: -1;
+  position: absolute;
+  height: 30px;
   width: 80px;
-  text-align: center;
+  content: "";
+  display: block;
+  border-radius: 3px;
+  transform: scale(0, 0);
+  transform-origin: 50% 50%;
+  transition: transform 0.1s;
+}
+.drag:hover::before {
+  transform: scale(1, 1);
+}
+#parameters {
+  background-color: #111111;
 }
 #rack {
   position: fixed;
