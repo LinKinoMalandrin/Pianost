@@ -8,16 +8,21 @@ class Key {
 
 	constructor(value, octave) {
 		if (typeof value === 'string') {
-			this.value = Keys.indexOf(value.toUpperCase());
+			this.value = Keys.all.indexOf(value.toUpperCase());
 			this.octave = octave || 0;
 		} else {
 			this.value = value ? value % 12 : 0;
-			this.octave = octave || value ? Math.trunc(value / 12) : 0;
+			this.octave = octave || (value ? Math.trunc(value / 12) : 0);
+			if (this.octave === undefined) octave = 0;
 		}
 	}
 
-	get string() { return Keys[this.value] + this.octave; }
-	get note() { return Keys[this.value]; }
+	valueOf() {
+		return this.value + this.octave * 12;
+	}
+
+	get string() { return Keys.all[this.value] + this.octave; }
+	get note() { return Keys.all[this.value]; }
 
 }
 
@@ -49,6 +54,14 @@ class Interval {
 
 }
 
-class Chord {
+const Scale = {
+	Minor : key => new __Scale(key, [2, 3, 5, 7, 8, 10]),
+	Major : key => new __Scale(key, [2, 4, 5, 7, 9, 11])
+}
 
+class __Scale {
+	constructor(string, intervals) {
+		this.fondamental = new Key(string, 0);
+		this.intervals = intervals.map(x => new Interval(this.fondamental, new Key(this.fondamental.valueOf() + x)));
+	}
 }

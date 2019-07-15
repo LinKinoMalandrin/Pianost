@@ -47,19 +47,28 @@
 		#app {
 			position:relative;
 		}
+		.piano { display: flex; }
+		.octave { position:relative; }
 
 	</style>
+	<meta charset="utf-8">
 </head>
 <body>
 
 	<div id="app">
-		<div class="blacks">
-			<div class="note black" v-for="key of blacks" :class="{ selected:input.split(' ').indexOf(key) !== -1 }">{{ key }}</div>
+		<div class="piano">
+			<div class="octave" v-for="n in 8">
+				<div class="blacks">
+					<div class="note black" v-for="key of blacks" :class="{selected:inChord(key, n)}">{{ stringKey(key, n) }}</div>
+				</div>
+				<div class="whites">
+					<div class="note" v-for="key of whites" :class="{selected:inChord(key, n)}">{{ stringKey(key, n) }}</div>
+				</div>
+			</div>
 		</div>
-		<div class="whites">
-			<div class="note" v-for="key of whites" :class="{ selected:input.split(' ').indexOf(key) !== -1 }">{{ key }}</div>
+		<div class="intervals">
+			<div class="interval" v-for="interval in scale.intervals" :class="interval.tag" @click="chord.push(interval.second)">{{ interval.name }}</div>
 		</div>
-		<input type="text" v-model='input'>
 	</div>
  	
 	<script type="text/javascript" src='Pianost.js'></script>
