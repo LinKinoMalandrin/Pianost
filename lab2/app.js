@@ -1,22 +1,19 @@
-let base = new Key('C', 2);
+let keys = [];
+
+let Synth = new Tone.PolySynth(7, Tone.Synth).toMaster();
+
+for (let i = 0; i < 8; i++)
+	for (let k of Keys.all)
+		keys.push(new Key(k, i));
+
+let base = keys[24];
+base.selected = true;
 
 const vue = new Vue({
 	el: '#app',
 	data : {
-		base: base,
-		whites : Keys.whites,
-		blacks : Keys.blacks,
-		scale : Scale.Major('C'),
-		chord : [base]
-	},
-	methods : {
-		stringKey : function(s, o) {
-			return new Key(s, o).string;
-		}, 
-		inChord : function(k, n) {
-			return this.chord.find((x) => { return x.string === this.stringKey(k, n) });
-		}
+		keys:keys,
+		chord:[base],
+		base:base
 	}
 });
-
-console.log(vue.keys);

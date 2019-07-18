@@ -9,11 +9,18 @@ class Key {
 	constructor(value, octave) {
 		if (typeof value === 'string') {
 			this.value = Keys.all.indexOf(value.toUpperCase());
-			this.octave = octave || 0;
+			if (octave === undefined)
+				this.octave = 0;
+			else
+				this.octave = octave;
 		} else {
 			this.value = value ? value % 12 : 0;
-			this.octave = octave || (value ? Math.trunc(value / 12) : 0);
-			if (this.octave === undefined) octave = 0;
+			if (octave === undefined) {
+				this.octave = (value !== undefined) ? Math.trunc(value / 12) : 0;
+			}
+			else {
+				this.octave = (octave  === undefined) ? ((value) ? Math.trunc(value / 12) : 0) : octave;
+			}
 		}
 	}
 
@@ -23,7 +30,8 @@ class Key {
 
 	get string() { return Keys.all[this.value] + this.octave; }
 	get note() { return Keys.all[this.value]; }
-
+	get white() { return this.note.length === 1; }
+	get black() { return this.note.length === 2; }
 }
 
 const Intervals = [
